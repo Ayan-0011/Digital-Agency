@@ -294,23 +294,46 @@ body.has-hero main {
 }
 
 .hx-word {
-  display: inline-block;
-  color: var(--hx-accent);
-  font-weight: 800;
-  line-height: 0.8;
-  white-space: nowrap;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;          /* try 900 for a heavier look */
+  letter-spacing: -0.04em;
+  line-height: 1;
 }
 
-.hx-char {
-  display: inline-block;
-  overflow: hidden;
-  vertical-align: top;
-  padding: 0.12em 0.08em 0.3em;
-  margin: -0.12em -0.12em -0.3em;
+.hx-char > span {
+  display: inline-block;     /* needed so each letter gets its own gradient box */
+  position: relative;
 }
 
-.hx-char>span {
-  display: inline-block;
+.hx-solid { color: #000; }
+
+/* Each digit shows its own slice of ONE continuous gradient across "365" */
+.hx-grad {
+  background-image: linear-gradient(
+    105deg,
+    #10131f 0%,
+    #34436b 35%,
+    #b4132a 65%,
+    #ffc4ad 100%
+  );
+  background-size: calc(var(--n) * 100%) 100%;
+  background-position: calc(var(--i) * 100% / (var(--n) - 1)) 0;
+  background-repeat: no-repeat;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+/* Gradient dot on the "i" */
+.hx-dot {
+  position: absolute;
+  left: 50%;
+  width: 0.24em;
+  height: 0.24em;
+  transform: translateX(-40%);
+  border-radius: 50%;
+  background: linear-gradient(135deg, #34436b 0%, #b4132a 55%, #ffc4ad 100%);
 }
 
 /* crosshair marks */
@@ -318,7 +341,7 @@ body.has-hero main {
   position: absolute;
   width: 14px;
   height: 14px;
-  transform: translate(-50%, -50%);
+  transform: translate(-40%, -50%);
   pointer-events: none;
 }
 

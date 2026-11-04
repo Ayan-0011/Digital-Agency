@@ -8,6 +8,8 @@ import Brand from '../ui/Brand.jsx';
 const SOCIAL_NAMES = { WA: 'WhatsApp', X: 'X', IG: 'Instagram', LI: 'LinkedIn' };
 const socials = brand.socials.filter(s => /^https?:/.test(s.href));
 const WORD = [...'social365'];
+const SPLIT = WORD.findIndex(c => /\d/.test(c)); // "365" yaha se shuru hota hai
+const GRAD_COUNT = WORD.length - SPLIT;
 
 export default function Footer() {
   const root = useRef(null);
@@ -15,18 +17,28 @@ export default function Footer() {
 
   // fit the giant wordmark to the footer width
   useLayoutEffect(() => {
+    const el = word.current;
+    const box = el?.parentElement;            // .footer-giant
+    if (!el || !box) return;
+
     const fit = () => {
-      const el = word.current;
-      const box = root.current;
-      if (!el || !box) return;
-      const pad = parseFloat(getComputedStyle(box).paddingLeft) * 2;
+      const cs = getComputedStyle(box);
+      const avail = box.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight);
+
       el.style.fontSize = '100px';
-      el.style.fontSize = `${(100 * (box.clientWidth - pad)) / el.offsetWidth}px`;
+      const natural = el.getBoundingClientRect().width;
+      if (!natural || !avail) return;
+
+      el.style.fontSize = `${Math.floor((100 * avail) / natural) - 2}px`;
     };
+
     fit();
+    document.fonts?.load('800 100px Montserrat').then(fit).catch(() => { });
     document.fonts?.ready.then(fit);
-    window.addEventListener('resize', fit);
-    return () => window.removeEventListener('resize', fit);
+
+    const ro = new ResizeObserver(fit);
+    ro.observe(box);
+    return () => ro.disconnect();
   }, []);
 
   useLayoutEffect(() => {
@@ -118,11 +130,21 @@ export default function Footer() {
 
       <div className="footer-giant" aria-hidden="true">
         <div className="footer-giant-word" ref={word}>
-          {WORD.map((char, i) => (
-            <span className={`fg-char ${char === '/' ? 'fg-slash' : ''}`} key={i}>
-              <span>{char}</span>
-            </span>
-          ))}
+          {WORD.map((char, i) => {
+            const isGrad = i >= SPLIT;
+            const isI = char === 'i';
+            return (
+              <span className="fg-char" key={i}>
+                <span
+                  className={isGrad ? 'fg-grad' : 'fg-solid'}
+                  style={isGrad ? { '--i': i - SPLIT, '--n': GRAD_COUNT } : undefined}
+                >
+                  {isI ? 'ı' : char}
+                  {isI && <i className="fg-dot" />}
+                </span>
+              </span>
+            );
+          })}
         </div>
       </div>
 

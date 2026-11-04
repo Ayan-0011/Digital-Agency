@@ -6,7 +6,7 @@
 
 /* ---------- 1. ACHIEVEMENTS & METRICS (.achieve) ---------- */
 .achieve {
- padding: clamp(90px, 9vw, 160px) var(--hx-pad) clamp(50px, 5vw, 80px);
+  padding: clamp(90px, 9vw, 160px) var(--hx-pad) clamp(50px, 5vw, 80px);
   background: var(--paper);
   border-top: 1px solid var(--line);
 }
@@ -40,7 +40,7 @@
   padding-bottom: 0.08em;
 }
 
-.achieve-line > span {
+.achieve-line>span {
   display: inline-block;
 }
 
@@ -218,7 +218,7 @@
   padding-bottom: 0.08em;
 }
 
-.benefit-line > span {
+.benefit-line>span {
   display: inline-block;
 }
 
@@ -445,7 +445,7 @@
   padding-bottom: 0.08em;
 }
 
-.tools-line > span {
+.tools-line>span {
   display: inline-block;
 }
 
@@ -579,7 +579,7 @@
   padding-bottom: 0.08em;
 }
 
-.engage-line > span {
+.engage-line>span {
   display: inline-block;
 }
 
@@ -803,7 +803,7 @@
   padding-bottom: 0.08em;
 }
 
-.faq-line > span {
+.faq-line>span {
   display: inline-block;
 }
 
@@ -979,7 +979,7 @@
   padding-bottom: 0.08em;
 }
 
-.stories-line > span {
+.stories-line>span {
   display: inline-block;
 }
 
@@ -1172,6 +1172,7 @@
    ========================================================================== */
 
 @media (max-width: 1024px) {
+
   .achieve-head,
   .benefit-head,
   .tools-head,
@@ -1204,6 +1205,7 @@
 }
 
 @media (max-width: 768px) {
+
   .achieve-grid,
   .benefit-grid,
   .tools-grid {
@@ -1347,16 +1349,58 @@
   line-height: 0.78;
   user-select: none;
   border-top: 1px solid rgba(255, 255, 255, 0.12);
-  padding-top: clamp(24px, 3.5vw, 48px);
+  /* thoda badhaya, "i" ka dot upar se na kate */
 }
 
 .footer-giant-word {
   display: inline-block;
+  font-family: 'Montserrat', sans-serif;
   color: var(--paper);
   font-weight: 800;
   letter-spacing: -0.06em;
   line-height: 0.8;
   white-space: nowrap;
+}
+
+/* letter mask (GSAP reveal ke liye) */
+.fg-char {
+  display: inline-block;
+  overflow: hidden;
+  padding: 0.2em 0.03em 0.06em;
+  margin: 0 -0.03em;
+}
+
+.fg-char>span {
+  display: inline-block;
+  position: relative;
+}
+
+/* "social" */
+.fg-solid {
+  color: var(--paper);
+}
+
+/* "365": hero jaisa gradient, ek continuous flow */
+.fg-grad {
+  background-image: linear-gradient(105deg, #38476b 0%, #b6192e 55%, #ffc1ac 100%);
+  background-size: calc(var(--n) * 100%) 100%;
+  background-position: calc(var(--i) * 100% / (var(--n) - 1)) 0;
+  background-repeat: no-repeat;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+/* "i" ka gradient dot */
+.fg-dot {
+  position: absolute;
+  left: 60%;
+  width: 0.24em;
+  height: 0.24em;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  background: linear-gradient(135deg, #38476b 0%, #b6192e 55%, #ffc1ac 100%);
 }
 
 .footer-bottom {
@@ -1382,14 +1426,17 @@
 }
 
 @media (max-width: 1024px) {
+
   .footer .footer-main,
   .footer-main {
     grid-template-columns: 1fr 1fr 1fr !important;
   }
+
   .footer .footer-brand,
   .footer-brand {
     grid-column: 1 / -1;
   }
+
   .footer .back-top,
   .back-top {
     justify-self: start;
@@ -1397,14 +1444,15 @@
 }
 
 @media (max-width: 768px) {
+
   .footer .footer-main,
   .footer-main {
     grid-template-columns: 1fr 1fr !important;
     gap: 32px 16px !important;
   }
+
   .footer .footer-contact,
   .footer-contact {
     grid-column: 1 / -1;
   }
 }
-
