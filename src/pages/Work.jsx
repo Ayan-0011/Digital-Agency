@@ -7,9 +7,9 @@ import { projects, workCategories } from '../data/projects.js';
 import { services } from '../data/services.js';
 
 const stats = [
-  { value: projects.length, pad: true, label: 'Selected projects' },
+  { value: projects.length, pad: true, label: 'Featured projects' },
   { value: workCategories.length, pad: true, label: 'Categories' },
-  { value: services.length, pad: true, label: 'Disciplines' },
+  { value: services.length, pad: true, label: 'Services' },
 ];
 
 export default function Work() {
@@ -17,20 +17,20 @@ export default function Work() {
     <PageHero
       className="pg-hero--work"
       eyebrow="( Selected Work )"
-      meta="2024 — 2026"
+      meta="SOCIAL365 — SELECTED WORK"
       lines={['Selected', <><em>work.</em></>]}
-      intro="Each project started with a question and a point of view worth protecting. A few collaborations, each with a different answer."
+      intro="Collaborations built on strategy, creativity and impact. New projects are added here as they go live."
     >
       <StatsStrip items={stats} />
     </PageHero>
 
-    <Marquee>GOOD WORK TRAVELS</Marquee>
+    <Marquee>TURNING BRANDS INTO EXPERIENCES</Marquee>
     <WorkGrid />
 
     <PageCta
       eyebrow="( Your Project )"
       lines={['Your project', <>could be <em>next.</em></>]}
-      sub="Tell us what you're working on. We'll tell you honestly how we could help."
+      sub="Tell us about your brand. We'll tell you honestly how we could help."
     />
   </>;
 }

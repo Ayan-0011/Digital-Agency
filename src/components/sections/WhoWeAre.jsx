@@ -8,12 +8,12 @@ import { aboutPillars, aboutStatement } from '../../data/studio.js';
 import { services } from '../../data/services.js';
 import { projects } from '../../data/projects.js';
 
-// "24+" is the same figure the homepage Achievements section shows
+// same figures as the homepage "What we stand for" section
 const stats = [
-  { value: services.length, pad: true, label: 'Core disciplines' },
-  { value: 24, suffix: '+', label: 'Platforms shipped' },
-  { value: projects.length, pad: true, label: 'Selected projects' },
-  { value: 100, suffix: '%', label: 'Senior collaboration' },
+  { value: services.length, pad: true, label: 'Core services' },
+  { value: 3, pad: true, label: 'Brand pillars' },
+  { value: 365, label: 'Days of presence' },
+  { value: projects.length, pad: true, label: 'Featured projects' },
 ];
 
 export default function WhoWeAre() {
@@ -38,7 +38,7 @@ export default function WhoWeAre() {
 
   return (
     <section className="ab-who pg-surface pg-surface--ink" id="who-we-are" ref={root}>
-      <SectionHead eyebrow="( Who We Are )" lines={['Small studio.', <>Big <em>picture.</em></>]} />
+      <SectionHead eyebrow="( Who We Are )" lines={['Ideas into', <><em>connections.</em></>]} />
 
       <Words as="p" className="ab-statement">{aboutStatement}</Words>
 

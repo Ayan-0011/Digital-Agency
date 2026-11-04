@@ -8,7 +8,7 @@ import Brand from '../ui/Brand.jsx';
 const SOCIAL_NAMES = { WA: 'WhatsApp', X: 'X', IG: 'Instagram', LI: 'LinkedIn' };
 const socials = brand.socials.filter(s => /^https?:/.test(s.href));
 const WORD = [...'social365'];
-const SPLIT = WORD.findIndex(c => /\d/.test(c)); // "365" yaha se shuru hota hai
+const SPLIT = WORD.findIndex(c => /\d/.test(c)); // where "365" starts
 const GRAD_COUNT = WORD.length - SPLIT;
 
 export default function Footer() {
@@ -81,8 +81,8 @@ export default function Footer() {
         <div className="footer-brand">
           <Brand light />
           <p>
-            Independent thinking.<br />
-            Digital things with feeling.
+            {brand.tagline}<br />
+            {brand.philosophy}
           </p>
         </div>
 
@@ -149,8 +149,8 @@ export default function Footer() {
       </div>
 
       <div className="footer-bottom">
-        <span>© {brand.year} {brand.name} STUDIO — CONCEPT BRAND</span>
-        <span>BUILT TO BE DIFFERENT. MADE TO WORK.</span>
+        <span>© {brand.year} {brand.name.toUpperCase()} — {brand.positioning.toUpperCase()}</span>
+        <span>{brand.philosophy.toUpperCase()}</span>
         <div>
           <Link to="/privacy-policy">PRIVACY</Link>
           <Link to="/terms">TERMS</Link>

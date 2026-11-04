@@ -5,38 +5,38 @@ const steps = [
   {
     n: '01',
     title: 'Listen first.',
-    text: 'We start with your core problem and business reality, not an off-the-shelf playbook.',
+    text: 'We start by understanding your brand, your audience and what you want to achieve.',
     tag: 'DISCOVERY',
   },
   {
     n: '02',
-    title: 'Shape the idea.',
-    text: 'Strategy, positioning, and scope articulated in plain language with clear milestones.',
+    title: 'Shape the strategy.',
+    text: 'Messaging, content direction and the right mix of services, put into a clear plan.',
     tag: 'STRATEGY',
   },
   {
     n: '03',
-    title: 'Design with intent.',
-    text: 'Brand world and interface architecture that reflect your identity and feel distinctive.',
-    tag: 'DESIGN',
+    title: 'Create with intent.',
+    text: 'Concepts, designs and copy that look and sound like your brand.',
+    tag: 'CREATIVE',
   },
   {
     n: '04',
-    title: 'Build it properly.',
-    text: 'Engineered with clean code, modern web standards, and high-performance GSAP motion.',
-    tag: 'DEVELOPMENT',
+    title: 'Produce it properly.',
+    text: 'Shoots, edits and finished creatives, polished and ready for your channels.',
+    tag: 'PRODUCTION',
   },
   {
     n: '05',
-    title: 'Launch together.',
-    text: 'Rigorous cross-browser quality assurance, SEO checks, and smooth deployment.',
-    tag: 'DEPLOYMENT',
+    title: 'Go live.',
+    text: 'Content and campaigns published with consistency, where your audience is.',
+    tag: 'LAUNCH',
   },
   {
     n: '06',
     title: 'Keep it growing.',
-    text: 'Post-launch performance review, analytics tuning, and continuous enhancements.',
-    tag: 'EVOLUTION',
+    text: 'We review what worked and refine the approach to keep building your presence.',
+    tag: 'GROWTH',
   },
 ];
 
@@ -89,7 +89,7 @@ export default function HorizontalScroll() {
       <div className="hs-head">
         <div className="hs-head-meta">
           <span className="eyebrow">( How we work )</span>
-          <span className="eyebrow hs-counter">06 PHASES / SYSTEMATIC SPRINT</span>
+          <span className="eyebrow hs-counter">06 PHASES / ONE DIRECTION</span>
         </div>
         <h2 className="hs-title">Six steps.<br /><em>One direction.</em></h2>
         <div className="hs-progress" aria-hidden="true">

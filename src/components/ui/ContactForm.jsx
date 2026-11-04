@@ -95,7 +95,7 @@ export default function ContactForm({ variant = 'compact' }) {
           <h3>{status === 'sent' ? <>Thank you.<br /><em>We&rsquo;ll be in touch.</em></> : <>One last step.<br /><em>Press send.</em></>}</h3>
           <p>
             {status === 'sent'
-              ? 'Your message is on its way to the studio. We read every note and reply with next steps.'
+              ? 'Your message is on its way to social365. We read every note and reply with next steps.'
               : <>Your email app should have opened with your message ready. It hasn&rsquo;t been sent until you press send there. Nothing opened? Write to us at <a href={`mailto:${brand.email}`}>{brand.email}</a>.</>}
           </p>
           <button type="button" onClick={reset}>SEND ANOTHER <ArrowRight size={15} /></button>

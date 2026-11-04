@@ -4,17 +4,17 @@ import '../../styles/cinematic-reveal.css';
 
 const CARDS = [
   // LEFT SIDE
-  { src: '/images/p1.avif', alt: 'Velocity Phantom concept car, seen from above', l: 5,  t: 10, w: 16, ml: 4,  mt: 8,  mw: 30, speed: 0.1 },
-  { src: '/images/p3.avif', alt: 'Boreal VR headset campaign portrait',           l: 20, t: 38, w: 13, ml: 17, mt: 42, mw: 28, speed: 0.22 },
-  { src: '/images/p5.avif', alt: 'Black and red desk object on a white surface',  l: 5,  t: 68, w: 14, ml: 4,  mt: 75, mw: 27, speed: 0.12 },
+  { src: '/images/p1.avif', alt: 'social365 creative work sample 01', l: 5,  t: 10, w: 16, ml: 4,  mt: 8,  mw: 30, speed: 0.1 },
+  { src: '/images/p3.avif', alt: 'social365 creative work sample 02',           l: 20, t: 38, w: 13, ml: 17, mt: 42, mw: 28, speed: 0.22 },
+  { src: '/images/p5.avif', alt: 'social365 creative work sample 03',  l: 5,  t: 68, w: 14, ml: 4,  mt: 75, mw: 27, speed: 0.12 },
 
   // RIGHT SIDE
-  { src: '/images/p4.avif', alt: 'Design Matters poster with black brush strokes', l: 79, t: 10, w: 15, ml: 66, mt: 8,  mw: 30, speed: 0.16 },
-  { src: '/images/p6.avif', alt: 'Yellow phone interface on dark phone backs',     l: 67, t: 38, w: 14, ml: 66, mt: 42, mw: 28, speed: 0.08 },
-  { src: '/images/p2.avif', alt: 'Relaxo black product packaging on dark fabric',  l: 80, t: 68, w: 14, ml: 66, mt: 75, mw: 30, speed: 0.2 },
+  { src: '/images/p4.avif', alt: 'social365 creative work sample 04', l: 79, t: 10, w: 15, ml: 66, mt: 8,  mw: 30, speed: 0.16 },
+  { src: '/images/p6.avif', alt: 'social365 creative work sample 05',     l: 67, t: 38, w: 14, ml: 66, mt: 42, mw: 28, speed: 0.08 },
+  { src: '/images/p2.avif', alt: 'social365 creative work sample 06',  l: 80, t: 68, w: 14, ml: 66, mt: 75, mw: 30, speed: 0.2 },
 ];
 
-const HEADLINE = ['Design that', 'captivates today', '& inspires', 'tomorrow'];
+const HEADLINE = ['Creative that', 'connects today', '& builds brands', 'for tomorrow'];
 
 const VIDEO_SRC = '/videos/JvsYQ6i2XehdtVamXDEovL33lw.mp4';
 
@@ -92,7 +92,7 @@ export default function CinematicReveal() {
   }, []);
 
   return (
-    <section className="cine" ref={root} aria-label="Selected work over studio reel">
+    <section className="cine" ref={root} aria-label="social365 creative work over reel">
       <div className="cine-stage">
         <div className="cine-frame">
           <video
@@ -123,7 +123,7 @@ export default function CinematicReveal() {
             ))}
           </div>
 
-          <h2 className="cine-title" aria-label="Design that captivates today & inspires tomorrow">
+          <h2 className="cine-title" aria-label="Creative that connects today and builds brands for tomorrow">
             {HEADLINE.map(line => (
               <span className="cine-line" key={line} aria-hidden="true"><span>{line}</span></span>
             ))}

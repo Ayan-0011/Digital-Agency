@@ -4,7 +4,7 @@ import { brand } from '../../config/brand.js';
 export default function Brand({ light = false }) {
   return (
     <Link to="/" className={`wordmark ${light ? 'wordmark-light' : ''}`} aria-label={`${brand.name} home`}>
-      AWESOME<sup>®</sup>
+      {brand.name}
     </Link>
   );
 }

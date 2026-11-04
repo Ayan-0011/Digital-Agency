@@ -23,7 +23,7 @@ export default function WorkSection({ compact = false }) {
         {displayProjects.map(p => <ProjectCard key={p.slug} project={p} />)}
       </div>
       <div className="work-bottom">
-        <span>SELECTED WORK / 2024—2026</span>
+        <span>SELECTED WORK / SOCIAL365</span>
         <Link className="text-link" to="/work">EXPLORE ALL PROJECTS <ArrowUpRight size={15} /></Link>
       </div>
     </section>

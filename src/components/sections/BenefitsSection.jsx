@@ -7,30 +7,30 @@ const benefits = [
   {
     num: '01',
     icon: Sparkles,
-    title: 'Direct Senior Craft',
-    subtitle: 'No middle layers. Direct collaboration.',
-    desc: 'You work directly with senior founders and specialists. Every question gets a definitive, knowledgeable answer without endless account manager telephone games.',
+    title: 'Strategy First',
+    subtitle: 'A plan behind every post.',
+    desc: 'We start with your brand, your audience and your goals, so every piece of content has a clear purpose.',
   },
   {
     num: '02',
     icon: Layers,
-    title: 'Strategy Meets Code',
-    subtitle: 'Design that looks bold and loads instantly.',
-    desc: 'We never decouple visual storytelling from architectural performance. Every project is built on modern, lightweight frameworks with sub-second responsiveness.',
+    title: 'One Connected Story',
+    subtitle: 'Social, video, shoots and web together.',
+    desc: 'Seven services in one place keep your brand looking and sounding consistent wherever people meet it.',
   },
   {
     num: '03',
     icon: Zap,
-    title: 'Transparent Sprints',
-    subtitle: 'Predictable delivery, zero surprises.',
-    desc: 'Structured weekly milestones, live staging links, and transparent communication. You experience the evolving product in real code, not just static mockups.',
+    title: 'Creative With Purpose',
+    subtitle: 'Bold ideas that do a job.',
+    desc: 'Good-looking work is the starting point. We make sure it also moves your business forward.',
   },
   {
     num: '04',
     icon: ShieldCheck,
-    title: 'Built to Endure',
-    subtitle: 'Substance that drives real conversion.',
-    desc: 'Visual distinction that earns respect and converts attention into pipeline. We create brand assets and codebases designed to remain relevant for years to come.',
+    title: 'Built For Growth',
+    subtitle: 'Presence that keeps building.',
+    desc: 'Consistent, thoughtful content strengthens your digital presence and creates more opportunities.',
   },
 ];
 
@@ -77,7 +77,7 @@ export default function BenefitsSection() {
   }, []);
 
   return (
-    <section className="benefits" id="benefits" ref={root} aria-label="Why choose our studio">
+    <section className="benefits" id="benefits" ref={root} aria-label="Why choose social365">
       <div className="benefit-head">
         <span className="eyebrow benefit-eyebrow">( Why Choose Us )</span>
         <h2 className="benefit-title">
@@ -85,7 +85,7 @@ export default function BenefitsSection() {
           <span className="benefit-line"><span>not just <em>projects.</em></span></span>
         </h2>
         <p className="benefit-intro">
-          Skip the hiring maze and bloated agency overhead. We operate as an agile creative and engineering powerhouse right at your fingertips, tuned for clarity and execution.
+          A creative team for strategy, content and campaigns, working around your brand and your goals.
         </p>
       </div>
 
@@ -103,7 +103,7 @@ export default function BenefitsSection() {
               <p className="benefit-card-desc">{b.desc}</p>
               <div className="benefit-card-foot">
                 <span className="benefit-indicator" />
-                <span className="benefit-tag">STUDIO STANDARD</span>
+                <span className="benefit-tag">SOCIAL365 WAY</span>
               </div>
             </article>
           );
@@ -112,12 +112,12 @@ export default function BenefitsSection() {
 
       <div className="benefit-bottom">
         <div className="benefit-seal">
-          <span>INDEPENDENT BY DESIGN</span>
+          <span>STRATEGY. CREATIVITY. IMPACT.</span>
           <b>↗</b>
-          <span>AHMEDABAD &amp; REMOTE</span>
+          <span>SOCIAL365</span>
         </div>
         <div className="benefit-cta-wrap">
-          <p>Ready to collaborate without agency red tape?</p>
+          <p>Ready to turn your brand into an experience?</p>
           <Link to="/contact" className="text-link">
             START A CONVERSATION <ArrowUpRight size={15} />
           </Link>

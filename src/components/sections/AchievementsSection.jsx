@@ -4,36 +4,36 @@ import { gsap } from '../../animations/gsapConfig.js';
 
 const metrics = [
   {
-    value: 24,
-    suffix: '+',
-    decimals: 0,
-    pad: true,
-    label: 'Platforms Shipped',
-    desc: 'Bespoke brand identities, e-commerce stores, and high-performance web systems launched since inception.',
-  },
-  {
-    value: 4,
+    value: 7,
     suffix: '',
     decimals: 0,
     pad: true,
-    label: 'Core Disciplines',
-    desc: 'Strategy, design, full-stack engineering, and AI automation sitting at the exact same table.',
+    label: 'Core Services',
+    desc: 'Social media, reels, shoots, campaigns, content strategy, websites and influencer campaigns, all under one roof.',
   },
   {
-    value: 100,
-    suffix: '%',
+    value: 3,
+    suffix: '',
+    decimals: 0,
+    pad: true,
+    label: 'Brand Pillars',
+    desc: 'Strategy. Creativity. Impact. The three ideas behind every project we take on.',
+  },
+  {
+    value: 365,
+    suffix: '',
     decimals: 0,
     pad: false,
-    label: 'Senior Collaboration',
-    desc: 'Direct partner and specialist access from day one. Zero layers of account managers or outsourced fluff.',
+    label: 'Days Of Presence',
+    desc: 'A brand is not built in one post. We think about consistency across the whole year.',
   },
   {
-    value: 99.4,
-    suffix: '%',
-    decimals: 1,
-    pad: false,
-    label: 'Performance Target',
-    desc: 'Sub-second interaction speeds, responsive fluid grids, and accessible GSAP motion systems.',
+    value: 1,
+    suffix: '',
+    decimals: 0,
+    pad: true,
+    label: 'Story, Told Well',
+    desc: 'Every post, reel, shoot and campaign is made to tell one consistent story for your brand.',
   },
 ];
 
@@ -121,11 +121,11 @@ export default function AchievementsSection() {
       className="achieve"
       id="achievements"
       ref={root}
-      aria-label="Our achievements and metrics"
+      aria-label="What social365 stands for"
     >
       <div className="achieve-head">
         <span className="eyebrow achieve-eyebrow">
-          ( Our Achievements )
+          ( What We Stand For )
         </span>
 
         <h2 className="achieve-title">
@@ -133,17 +133,17 @@ export default function AchievementsSection() {
             <span>Behind every</span>
           </span>
           <span className="achieve-line">
-            <span>milestone <em>pulses</em></span>
+            <span>great brand <em>lives</em></span>
           </span>
           <span className="achieve-line">
-            <span>a human story.</span>
+            <span>a clear story.</span>
           </span>
         </h2>
 
         <p className="achieve-intro">
-          Transforming ambitious goals into durable digital reality.
-          We measure progress by clarity of purpose, technical excellence,
-          and the quiet impact of work done right.
+          We turn ideas into meaningful connections. Strategy gives the
+          direction, creativity gives the voice, and impact is what
+          your brand builds over time.
         </p>
       </div>
 

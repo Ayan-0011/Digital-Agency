@@ -26,9 +26,9 @@ export default function Expertise() {
   return (
     <section className="ab-expertise pg-surface" id="expertise" ref={root}>
       <SectionHead
-        eyebrow="( Our Expertise )"
-        lines={['Three ways', <>we make it <em>matter.</em></>]}
-        intro="Creative development, digital experiences and technology, working as one team rather than three departments."
+        eyebrow="( Our Philosophy )"
+        lines={['Three pillars', <>behind <em>everything.</em></>]}
+        intro="Strategy, creativity and impact, working together in every project we take on."
       />
 
       <div className="ab-panels">

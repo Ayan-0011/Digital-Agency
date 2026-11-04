@@ -25,11 +25,11 @@ export default function CtaSection() {
     <section className="cta" ref={root} aria-labelledby="cta-title">
       <div className="cta-top"><span className="eyebrow">( Next )</span><span className="eyebrow">LET'S TALK ↘</span></div>
       <h2 className="cta-title" id="cta-title">
-        <span className="cta-line"><span>Let's make it</span></span>
-        <span className="cta-line"><span>mean <em>more.</em></span></span>
+        <span className="cta-line"><span>Let's turn your brand</span></span>
+        <span className="cta-line"><span>into an <em>experience.</em></span></span>
       </h2>
       <div className="cta-bottom">
-        <p className="cta-sub">Big brief, small question, or just a feeling that something could be better. Start the conversation.</p>
+        <p className="cta-sub">Big brief, small question, or just an idea. Tell us about your brand and let’s start the conversation.</p>
         <div className="cta-actions">
           <Link to="/contact" className="cta-btn">
             <span className="cta-btn-label">START A PROJECT</span>

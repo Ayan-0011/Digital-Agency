@@ -50,15 +50,15 @@ export default function ClientStoriesSection() {
   }, []);
 
   return (
-    <section className="stories-sec" id="client-stories" ref={root} aria-label="Client case stories and impact">
+    <section className="stories-sec" id="client-stories" ref={root} aria-label="social365 collaborations">
       <div className="stories-head">
-        <span className="eyebrow stories-eyebrow">( Client Impact )</span>
+        <span className="eyebrow stories-eyebrow">( Collaborations )</span>
         <h2 className="stories-title">
-          <span className="stories-line"><span>Transforming brands.</span></span>
-          <span className="stories-line"><span>Driven by <em>outcomes.</em></span></span>
+          <span className="stories-line"><span>Brands we create</span></span>
+          <span className="stories-line"><span>with, <em>together.</em></span></span>
         </h2>
         <p className="stories-intro">
-          Real challenges turned into lasting digital advantage. Discover how our collaboration helped these brands claim distinctive positions in their industries.
+          A look at the collaborations we are proud to share. More projects will be added here as they go live.
         </p>
       </div>
 
@@ -68,7 +68,7 @@ export default function ClientStoriesSection() {
             <div className="story-card-media">
               <img
                 src={p.image}
-                alt={`${p.name} case study visual`}
+                alt={`${p.name} project visual`}
                 className="story-card-img"
                 loading="lazy"
               />
@@ -81,13 +81,13 @@ export default function ClientStoriesSection() {
             <div className="story-card-content">
               <span className="story-cat">{p.type}</span>
               <h3 className="story-name">{p.name}</h3>
-              <p className="story-line">"{p.line}"</p>
+              <p className="story-line">{p.line}</p>
               <p className="story-intro">{p.intro}</p>
 
               <div className="story-meta-row">
-                <span className="story-palette">Palette: {p.palette}</span>
+                <span className="story-palette">{p.services.join(' · ')}</span>
                 <Link to={`/work/${p.slug}`} className="story-link">
-                  <span>CASE STUDY</span>
+                  <span>VIEW PROJECT</span>
                   <ArrowUpRight size={14} />
                 </Link>
               </div>
@@ -97,7 +97,7 @@ export default function ClientStoriesSection() {
       </div>
 
       <div className="stories-foot">
-        <span>DELIVERED WITH METICULOUS DETAIL</span>
+        <span>STRATEGY. CREATIVITY. IMPACT.</span>
         <Link to="/work" className="text-link">
           ALL CASE STUDIES <ArrowUpRight size={15} />
         </Link>

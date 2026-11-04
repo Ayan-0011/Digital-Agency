@@ -4,24 +4,24 @@ import { gsap } from '../../animations/gsapConfig.js';
 
 const toolCategories = [
   {
-    category: 'Engineering & Frontend',
-    desc: 'Lightweight, lightning-fast rendering without unnecessary framework bloat.',
-    items: ['React 18', 'Vite', 'GSAP 3', 'ScrollTrigger', 'Lenis Scroll', 'TypeScript', 'Node.js'],
+    category: 'Social & Content',
+    desc: 'A consistent, on-brand presence that keeps your audience engaged.',
+    items: ['Social Media Management & Content', 'Content Strategy'],
   },
   {
-    category: 'Design & Design Systems',
-    desc: 'Scalable visual identities, fluid typography, and precise design tokens.',
-    items: ['Figma', 'Design Tokens', 'Motion Prototyping', 'Art Direction', 'SVG Geometry'],
+    category: 'Video & Visuals',
+    desc: 'Footage and photography turned into content people stop to watch.',
+    items: ['Reels Editing', 'Product / In-store Shoot'],
   },
   {
-    category: 'Content & Platforms',
-    desc: 'Modern headless architectures giving marketing teams complete publishing independence.',
-    items: ['Headless CMS', 'Webflow', 'REST APIs', 'Supabase', 'Cloudflare Edge'],
+    category: 'Campaigns & Reach',
+    desc: 'Big ideas and the right voices, working together for a launch or an offer.',
+    items: ['Campaign Creatives', 'Influencer Campaigns'],
   },
   {
-    category: 'AI & Automation Workflows',
-    desc: 'Practical automated pipelines that streamline workflows and operate 24/7.',
-    items: ['OpenAI / Claude APIs', 'Automated CRM Sync', 'Voice AI Agents', 'Webhook Pipelines'],
+    category: 'Your Digital Home',
+    desc: 'A clean, responsive website where social attention turns into enquiries.',
+    items: ['Website Development'],
   },
 ];
 
@@ -68,15 +68,15 @@ export default function ToolsSection() {
   }, []);
 
   return (
-    <section className="tools-sec" id="tools" ref={root} aria-label="Tools and technology we use">
+    <section className="tools-sec" id="tools" ref={root} aria-label="How social365 services fit together">
       <div className="tools-head">
-        <span className="eyebrow tools-eyebrow">( Stack &amp; Craft )</span>
+        <span className="eyebrow tools-eyebrow">( Our Craft )</span>
         <h2 className="tools-title">
-          <span className="tools-line"><span>Modern tools for</span></span>
-          <span className="tools-line"><span>modern <em>ambition.</em></span></span>
+          <span className="tools-line"><span>Everything your brand</span></span>
+          <span className="tools-line"><span>needs to <em>stand out.</em></span></span>
         </h2>
         <p className="tools-intro">
-          We choose technologies that are fast, accessible, and enjoyable to maintain. No bloated dependencies, no obsolete legacy code — only resilient digital foundations.
+          Seven services, grouped around the way brands actually grow: showing up consistently, creating strong visuals, running bigger campaigns and having a place to land online.
         </p>
       </div>
 
@@ -100,7 +100,7 @@ export default function ToolsSection() {
       </div>
 
       <div className="tools-foot">
-        <span>CURATED STACK / ZERO BLOAT GUARANTEE</span>
+        <span>STRATEGY. CREATIVITY. IMPACT.</span>
         <a href="#top" className="text-link" onClick={e => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }}>
           BACK TO TOP <ArrowUpRight size={14} />
         </a>

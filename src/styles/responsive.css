@@ -141,7 +141,7 @@
     .menu-aside {
         min-height: unset;
         border-left: 0;
-        border-top: 1px solid #181a1725;
+        border-top: 1px solid #12152125;
         padding: 15px 0 0;
         display: grid;
         grid-template-columns: 75px 1fr;

@@ -5,46 +5,43 @@ import { gsap } from '../../animations/gsapConfig.js';
 
 const tiers = [
   {
-    kicker: 'RAPID SCOPE',
-    name: 'Targeted Sprint',
-    headline: 'Validate an idea or overhaul a key interface rapidly.',
+    kicker: 'START SMALL',
+    name: 'Single Project',
+    headline: 'One focused piece of work with a clear outcome.',
     deliverables: [
-      '2 to 4-week concentrated design or code sprint',
-      'Strategic brand & UX direction',
-      'High-fidelity interactive prototype in Figma',
-      'Direct collaboration with studio founders',
-      'Complete design tokens & component handoff',
+      'A set of reels, a product shoot or a campaign creative',
+      'Clear direction from the first conversation',
+      'Content styled around your brand',
+      'A good way to experience how we work',
     ],
-    cta: 'DISCUSS A SPRINT',
+    cta: 'DISCUSS A PROJECT',
     featured: false,
   },
   {
-    kicker: 'FLAGSHIP BUILD',
-    name: 'End-to-End Website',
-    headline: 'A bespoke, unforgettable digital home for your brand.',
+    kicker: 'ALWAYS ON',
+    name: 'Ongoing Content',
+    headline: 'Steady social media management and content for your brand.',
     deliverables: [
-      'Custom visual identity & design language',
-      'Modern, lightweight React + Vite engineering',
-      'Tailored GSAP scroll animations & micro-interactions',
-      'Headless CMS integration for effortless updates',
-      'Cross-device optimization & sub-second load times',
-      'Rigorous SEO setup and launch deployment',
+      'Social media management & content',
+      'Content strategy behind every post',
+      'Reels, creatives and shoots as your brand needs them',
+      'A consistent look, voice and posting rhythm',
+      'Open conversation about what to do next',
     ],
-    cta: 'START YOUR BUILD',
+    cta: 'START WITH CONTENT',
     featured: true,
   },
   {
-    kicker: 'CONTINUOUS EVOLUTION',
-    name: 'Studio Retainer',
-    headline: 'Ongoing design and technical capacity for growing teams.',
+    kicker: 'FULL PICTURE',
+    name: 'Brand Build',
+    headline: 'Strategy, content, campaigns and web working as one.',
     deliverables: [
-      'Dedicated monthly hours for design & development',
-      'Continuous conversion rate & UX optimization',
-      'New landing page rollouts and feature releases',
-      'Priority sprint queue and prompt async response',
-      'Flexible month-to-month commitment',
+      'Content strategy and brand voice',
+      'Campaign creatives and influencer campaigns',
+      'Website development',
+      'Everything connected into a single story',
     ],
-    cta: 'EXPLORE RETAINER',
+    cta: 'BUILD TOGETHER',
     featured: false,
   },
 ];
@@ -92,22 +89,22 @@ export default function EngagementSection() {
   }, []);
 
   return (
-    <section className="engage-sec" id="engagement" ref={root} aria-label="Engagement models and pricing options">
+    <section className="engage-sec" id="engagement" ref={root} aria-label="Ways to work with social365">
       <div className="engage-head">
-        <span className="eyebrow engage-eyebrow">( How We Partner )</span>
+        <span className="eyebrow engage-eyebrow">( Ways To Work Together )</span>
         <h2 className="engage-title">
-          <span className="engage-line"><span>Clear models.</span></span>
-          <span className="engage-line"><span>Focused <em>outcomes.</em></span></span>
+          <span className="engage-line"><span>Start where it</span></span>
+          <span className="engage-line"><span>makes <em>sense.</em></span></span>
         </h2>
         <p className="engage-intro">
-          Transparent collaborations tailored to your ambition. Every engagement is rooted in direct accountability, clean craftsmanship, and measurable business impact.
+          Pick one service or combine several. Every collaboration is shaped around your brand, your audience and your goals.
         </p>
       </div>
 
       <div className="engage-grid">
         {tiers.map((t, i) => (
           <article className={`engage-card ${t.featured ? 'engage-featured' : ''}`} key={i}>
-            {t.featured && <span className="engage-badge">FEATURED PARTNERSHIP</span>}
+            {t.featured && <span className="engage-badge">MOST POPULAR PATH</span>}
             <div className="engage-card-top">
               <span className="engage-kicker">{t.kicker}</span>
               <h3 className="engage-name">{t.name}</h3>
@@ -137,8 +134,8 @@ export default function EngagementSection() {
 
       <div className="engage-note">
         <p>
-          Need a custom scope or specific technical integration? We craft tailored proposals based on your exact requirements.{' '}
-          <Link to="/contact" className="engage-inline-link">Let’s discuss your project ↘</Link>
+          Not sure which path fits? Tell us about your brand and we will suggest the right mix.{' '}
+          <Link to="/contact" className="engage-inline-link">Let’s talk ↘</Link>
         </p>
       </div>
     </section>

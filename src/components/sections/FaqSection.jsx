@@ -5,28 +5,28 @@ import { gsap } from '../../animations/gsapConfig.js';
 
 const faqs = [
   {
-    q: 'What kind of projects does the studio take on?',
-    a: 'We specialize in brand identities, high-performance bespoke websites, interactive e-commerce experiences, and custom web applications. We work best with forward-thinking teams and founders who value design distinction and technical craft.',
+    q: 'What services does social365 offer?',
+    a: 'Seven services: Social Media Management & Content, Reels Editing, Product / In-store Shoot, Campaign Creatives, Content Strategy, Website Development and Influencer Campaigns.',
   },
   {
-    q: 'How long does a typical website build take?',
-    a: 'Focused design or architecture sprints typically take 2 to 4 weeks. Full end-to-end digital builds generally range between 6 to 10 weeks, depending on scope, custom animations, integrations, and content readiness.',
+    q: 'Can we start with just one service?',
+    a: 'Yes. Many brands begin with a single service, such as a set of reels or a product shoot, and add more as their needs grow.',
   },
   {
-    q: 'Who will I actually be working with on our project?',
-    a: 'You collaborate directly with the studio founders and senior specialists in design and engineering. We deliberately do not employ layers of account managers, so you always receive informed, immediate answers.',
+    q: 'Do you handle strategy as well as creative?',
+    a: 'Yes. Strategy comes first. We plan the message, the content and the formats, then create work that supports that plan.',
   },
   {
-    q: 'What technologies and frameworks do you build with?',
-    a: 'We build with React 18, Vite, GSAP 3 (ScrollTrigger), Lenis smooth scrolling, modern CSS architecture, and headless CMS platforms. When appropriate, we also work with Webflow or Node.js backends based on your team’s editing needs.',
+    q: 'What do you need from us to begin?',
+    a: 'A short introduction to your brand and goals, any existing brand assets, and examples of content you like. We will guide the rest.',
   },
   {
-    q: 'How do revisions and feedback cycles work?',
-    a: 'We operate in transparent weekly iterations. You review live interactive prototypes and staging links rather than static screenshots, allowing us to incorporate feedback quickly and keep the project moving forward without bottlenecks.',
+    q: 'How do we get started?',
+    a: 'Send us a message through the contact form, email us, or reach out on Instagram. We will reply and talk through your brand and what you need.',
   },
   {
-    q: 'How do we get started with a new engagement?',
-    a: 'Reach out via our contact form with a brief summary of your timeline and goals. We will schedule a focused 30-minute discovery call to assess alignment, outline the project scope, and provide a clear timeline.',
+    q: 'Where can I see your work?',
+    a: 'On our Work page and on Instagram at social365.agency.',
   },
 ];
 
@@ -78,15 +78,15 @@ export default function FaqSection() {
   };
 
   return (
-    <section className="faq-sec" id="faq" ref={root} aria-label="Frequently asked questions">
+    <section className="faq-sec" id="faq" ref={root} aria-label="Frequently asked questions about social365">
       <div className="faq-head">
-        <span className="eyebrow faq-eyebrow">( Popular Queries )</span>
+        <span className="eyebrow faq-eyebrow">( Good To Know )</span>
         <h2 className="faq-title">
           <span className="faq-line"><span>Quick and clear</span></span>
           <span className="faq-line"><span>answers to your <em>questions.</em></span></span>
         </h2>
         <p className="faq-intro">
-          Everything you need to know about our collaboration, process, timelines, and deliverables. Clear communication from day one.
+          The basics about our services, how we work and how to get started.
         </p>
       </div>
 
@@ -130,8 +130,8 @@ export default function FaqSection() {
 
       <div className="faq-bottom-banner">
         <div>
-          <h4>Still looking for answers or need a good chat?</h4>
-          <p>Our team will guide you through our process, project specifications, and timeline estimates.</p>
+          <h4>Still have a question?</h4>
+          <p>Send us a message and we will help you find the right place to start.</p>
         </div>
         <Link to="/contact" className="faq-call-btn">
           <span>LET'S TALK</span>

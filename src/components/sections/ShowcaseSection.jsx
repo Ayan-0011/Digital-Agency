@@ -23,12 +23,12 @@ export default function ShowcaseSection() {
   }, []);
 
   return (
-    <section className="showcase" ref={root} aria-label="Studio showcase">
+    <section className="showcase" ref={root} aria-label="social365 showcase">
       <div className="showcase-frame">
-        <img className="showcase-img" src="/images/showcase.jpg" alt="Creative digital showcase" width="2400" height="1500" loading="eager" decoding="async" />
+        <img className="showcase-img" src="/images/showcase.jpg" alt="social365 creative showcase" width="2400" height="1500" loading="eager" decoding="async" />
         <p className="showcase-caption">
-          <span>Independent thinking.</span>
-          <span>Digital things with feeling.</span>
+          <span>Strategy. Creativity.</span>
+          <span>Impact.</span>
         </p>
       </div>
     </section>

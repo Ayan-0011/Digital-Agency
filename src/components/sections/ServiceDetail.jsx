@@ -6,24 +6,27 @@ import { once, useReveal } from '../../animations/useReveal.js';
 import { services } from '../../data/services.js';
 import { serviceDetails } from '../../data/serviceDetails.js';
 
-// each service gets its own surface and its own visual so the page never repeats one card
-const LOOK = { '01': 'ink', '02': 'paper', '03': 'paper', '04': 'ink' };
+// each service gets its own surface and its own visual so the page never repeats one card.
+// The Services page has four designed layouts (01-04). With seven services the same four
+// layouts repeat in order (05 uses layout 01, 06 uses 02, 07 uses 03), so the design is unchanged.
+const LOOK = ['ink', 'paper', 'paper', 'ink'];
+const layoutOf = index => String((index % 4) + 1).padStart(2, '0');
 
-function Visual({ n, tools }) {
-  if (n === '01') {
+function Visual({ kind, tools, ring }) {
+  if (kind === 'bars') {
     // rising bars: reporting / pipeline
     return <div className="sv-visual sv-bars" aria-hidden="true">{[34, 52, 44, 70, 62, 88, 100].map((h, i) => <i key={i} style={{ '--h': `${h}%` }} />)}</div>;
   }
-  if (n === '02') {
-    // performance ring: the 99.4% target quoted on the homepage
+  if (kind === 'ring') {
+    // brand ring with a short label (set per service in serviceDetails.js)
     return (
       <div className="sv-visual sv-ring" aria-hidden="true">
         <svg viewBox="0 0 120 120"><circle className="sv-ring-bg" cx="60" cy="60" r="52" /><circle className="sv-ring-fg" cx="60" cy="60" r="52" pathLength="100" /></svg>
-        <b>99.4%</b><span>PERFORMANCE TARGET</span>
+        <b>{ring?.big}</b><span>{ring?.small}</span>
       </div>
     );
   }
-  if (n === '03') {
+  if (kind === 'discs') {
     // overlapping brand discs
     return <div className="sv-visual sv-discs" aria-hidden="true"><i /><i /><i /><i /></div>;
   }
@@ -36,10 +39,11 @@ function Visual({ n, tools }) {
   );
 }
 
-function ServiceBlock({ service }) {
+function ServiceBlock({ service, index }) {
   const root = useRef(null);
   const detail = serviceDetails[service.n];
-  const tone = LOOK[service.n] ?? 'paper';
+  const layout = layoutOf(index);
+  const tone = LOOK[index % 4];
 
   useReveal(root, ({ wide }) => {
     const block = root.current;
@@ -66,7 +70,7 @@ function ServiceBlock({ service }) {
   }, []);
 
   return (
-    <section className={`sv-block sv-block--${service.n} pg-surface pg-surface--${tone}`} id={`service-${service.n}`} ref={root} aria-labelledby={`sv-title-${service.n}`}>
+    <section className={`sv-block sv-block--${layout} pg-surface pg-surface--${tone}`} id={`service-${service.n}`} ref={root} aria-labelledby={`sv-title-${service.n}`}>
       <div className="sv-top">
         <span className="eyebrow">( Service {service.n} / {String(services.length).padStart(2, '0')} )</span>
         <span className="eyebrow">{detail.kicker.toUpperCase()}</span>
@@ -84,7 +88,7 @@ function ServiceBlock({ service }) {
           </ul>
         </div>
 
-        <Visual n={service.n} tools={detail.tools} />
+        <Visual kind={detail.visual} tools={detail.tools} ring={detail.ring} />
 
         <div className="sv-caps">
           <span className="eyebrow">Key capabilities / {service.count}</span>
@@ -93,7 +97,7 @@ function ServiceBlock({ service }) {
           </ul>
         </div>
 
-        {service.n !== '04' && (
+        {detail.visual !== 'flow' && (
           <div className="sv-tools">
             <span className="eyebrow">{detail.toolsLabel}</span>
             <ul>{detail.tools.map(tool => <li key={tool}>{tool}</li>)}</ul>
@@ -107,5 +111,5 @@ function ServiceBlock({ service }) {
 }
 
 export default function ServiceDetail() {
-  return <>{services.map(service => <ServiceBlock service={service} key={service.n} />)}</>;
+  return <>{services.map((service, index) => <ServiceBlock service={service} index={index} key={service.n} />)}</>;
 }

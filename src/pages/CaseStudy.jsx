@@ -14,7 +14,7 @@ export default function CaseStudy() {
   const next = projects[(index + 1) % projects.length];
 
   const [first, second] = project.name.split(' / ');
-  const accent = second ?? (project.style === 'after' ? 'After dark' : 'Field notes');
+  const accent = second ?? 'Collaboration';
 
   return <>
     <section className={`case-hero case-${project.style}`}>
@@ -22,23 +22,23 @@ export default function CaseStudy() {
       <h1>{first}<br /><em>{accent}.</em></h1>
       <p>{project.intro}</p>
       <div className="case-art-wrap"><ProjectArtwork project={project} /></div>
-      <div className="case-bottom"><span>ART DIRECTION / DIGITAL / STRATEGY</span><span>SCROLL TO EXPLORE ↓</span></div>
+      <div className="case-bottom"><span>STRATEGY / CREATIVITY / IMPACT</span><span>SCROLL TO EXPLORE ↓</span></div>
     </section>
     <div className="cs-surface">
     <section className="case-story">
-      <div><span className="eyebrow">THE BRIEF</span><h2>Make it feel<br /><em>like nothing else.</em></h2></div>
+      <div><span className="eyebrow">THE PROJECT</span><h2>Strategy,<br /><em>creativity, impact.</em></h2></div>
       <div>
-        <p>{project.intro} We worked across strategy, art direction and digital experience to build a distinct world with a clear purpose and a memorable point of view.</p>
+        <p>{project.brief}</p>
         <div className="case-facts">
           <span>DISCIPLINES</span><b>{project.type}</b>
-          <span>PALETTE</span><b>{project.palette}</b>
-          <span>OUTCOME</span><b>A sharper story and a more useful digital home.</b>
+          <span>SERVICES</span><b>{project.services.join(' · ')}</b>
+          <span>STATUS</span><b>{project.placeholder ? 'Placeholder: details coming soon.' : 'Full project details coming soon.'}</b>
         </div>
       </div>
     </section>
     </div>
     <CaseDetail project={project} next={next} />
-    <div className="case-next"><span className="eyebrow">MORE GOOD WORK</span><Link to="/work">BACK TO ALL PROJECTS <ArrowUpRight /></Link></div>
+    <div className="case-next"><span className="eyebrow">MORE FROM SOCIAL365</span><Link to="/work">BACK TO ALL PROJECTS <ArrowUpRight /></Link></div>
     <div className="cs-surface"><ContactSection /></div>
   </>;
 }

@@ -38,7 +38,7 @@ export default function CaseDetail({ project, next }) {
       <section className="cs-detail pg-surface">
         <div className="cs-grid">
           <div className="cs-block">
-            <span className="eyebrow">( The Challenge )</span>
+            <span className="eyebrow">( The Project )</span>
             <p className="cs-lead">{project.challenge}</p>
           </div>
           <div className="cs-block">

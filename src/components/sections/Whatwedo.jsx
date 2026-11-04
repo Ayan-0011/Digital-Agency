@@ -34,7 +34,7 @@ export default function WhatWeDo() {
           <span className="wwd-line"><span>What we</span></span>
           <span className="wwd-line"><span><em>do.</em></span></span>
         </h2>
-        <p className="wwd-intro">Strategy, design and technology in the same room. Four disciplines, one small team — pick one, or let us stitch them together.</p>
+        <p className="wwd-intro">Seven services, one creative agency. Start with the one your brand needs most, or let us bring them together into a single story.</p>
       </div>
 
       <ul className="wwd-list">
@@ -55,7 +55,7 @@ export default function WhatWeDo() {
       </ul>
 
       <div className="wwd-foot">
-        <span>04 DISCIPLINES / ONE STUDIO</span>
+        <span>{String(services.length).padStart(2, '0')} SERVICES / ONE AGENCY</span>
         <Link className="text-link" to="/services">ALL SERVICES <ArrowUpRight size={15} /></Link>
       </div>
     </section>

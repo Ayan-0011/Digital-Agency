@@ -23,9 +23,9 @@ export default function Services() {
     <PageHero
       className="pg-hero--services"
       eyebrow="( Our Capabilities )"
-      meta={`${String(services.length).padStart(2, '0')} DISCIPLINES / ONE STUDIO`}
+      meta={`${String(services.length).padStart(2, '0')} SERVICES / ONE AGENCY`}
       lines={['The right', <>kind of <em>help.</em></>]}
-      intro="No off-the-shelf packages. We bring the right mix of strategy, craft and technology to the problem in front of you."
+      intro="Seven services built around strategy, creativity and impact. Use one on its own or bring them together into a single story for your brand."
     >
       <ol className="sv-index" aria-label="Jump to a service">
         {services.map(service => (
@@ -47,8 +47,8 @@ export default function Services() {
       tone="alt"
       id="process"
       eyebrow="( How It Works )"
-      lines={['From first call', <>to <em>launch.</em></>]}
-      intro="The same five steps whatever the service, scaled to the size of the problem."
+      lines={['From first hello', <>to <em>published.</em></>]}
+      intro="The same five steps whatever the service, scaled to what your brand needs."
       steps={serviceProcess}
     />
 
@@ -57,23 +57,23 @@ export default function Services() {
       tone="ink"
       id="approach"
       eyebrow="( Why Our Approach )"
-      lines={['Built around', <>your <em>outcome.</em></>]}
-      intro="What working this way means for you in practice."
+      lines={['Built around', <>your <em>brand.</em></>]}
+      intro="What working with social365 means for your brand in practice."
       items={serviceBenefits}
     />
 
     <FaqList
       eyebrow="( Good To Know )"
       lines={['Questions about', <>working <em>together.</em></>]}
-      intro="Services, timelines, what we need from you and how collaboration works."
+      intro="Services, what we need from you and how working together goes."
       faqs={serviceFaqs}
-      banner={{ title: 'Not sure which service you need?', text: "That's a good place to start. Tell us about the problem and we'll point you in the right direction.", label: 'TELL US ABOUT IT', to: '/contact' }}
+      banner={{ title: 'Not sure which service you need?', text: "That's a good place to start. Tell us about your brand and we'll point you in the right direction.", label: 'TELL US ABOUT IT', to: '/contact' }}
     />
 
     <PageCta
       eyebrow="( Next )"
       lines={["Let's find the", <>right <em>fit.</em></>]}
-      sub="Tell us about the problem. We'll recommend the smallest mix of services that solves it."
+      sub="Tell us about your brand. We'll recommend the right mix of services to start with."
     />
   </>;
 }

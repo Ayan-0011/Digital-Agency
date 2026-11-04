@@ -1,9 +1,15 @@
 :root {
-	--paper: #f2f0e9;
-	--ink: #181a17;
-	--acid: #d7f45b;
-	--orange: #ff6748;
-	--line: rgba(24, 26, 23, 0.2);
-	--muted: #77796e;
+	/* social365 brand palette */
+	--s365-black: #121521;
+	--s365-navy: #38476b;
+	--s365-maroon: #b6192e;
+	--s365-peach: #ffc1ac;
+
+	--paper: #fbf3ef;      /* light surface: soft peach-tinted neutral */
+	--ink: #121521;        /* primary dark surface */
+	--acid: #ffc1ac;       /* light accent (highlights on dark, hover fills) */
+	--orange: #b6192e;     /* brand accent (legacy token name kept so existing CSS keeps working) */
+	--line: rgba(18, 21, 33, 0.2);
+	--muted: #6b7592;
 	--mono: 'DM Mono', monospace;
 }

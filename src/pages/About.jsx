@@ -7,26 +7,27 @@ import ProcessTimeline from '../components/sections/ProcessTimeline.jsx';
 import WhyUs from '../components/sections/WhyUs.jsx';
 import PageCta from '../components/sections/PageCta.jsx';
 import { aboutProcess, whyUs } from '../data/studio.js';
+import { brand } from '../config/brand.js';
 
 export default function About() {
   return <>
     <PageHero
       className="pg-hero--about"
-      eyebrow="( About The Studio )"
-      meta="AHMEDABAD · WORKING EVERYWHERE"
-      lines={['Independent', <>by <em>design.</em></>]}
-      intro="A small, curious digital studio for people who want to make a difference, not just more noise. Strategy, design and technology in the same room."
+      eyebrow="( About social365 )"
+      meta={brand.positioning.toUpperCase()}
+      lines={['Creative with', <>a <em>strategy.</em></>]}
+      intro="social365 is a digital marketing and creative agency. We help brands build a stronger digital presence through strategy, storytelling and impactful communication."
     >
       <figure className="ab-figure">
         <img src="/images/img.jpg" alt="" width="2400" height="1500" loading="eager" decoding="async" style={{"objectFit":"cover"}}/>
         <svg className="ab-badge" viewBox="0 0 120 120" aria-hidden="true">
           <defs><path id="ab-circle" d="M60,60 m-46,0 a46,46 0 1,1 92,0 a46,46 0 1,1 -92,0" /></defs>
-          <text><textPath href="#ab-circle" textLength="284" lengthAdjust="spacing">INDEPENDENT BY DESIGN ✳ SMALL STUDIO ✳ BIG PICTURE ✳</textPath></text>
+          <text><textPath href="#ab-circle" textLength="284" lengthAdjust="spacing">STRATEGY ✳ CREATIVITY ✳ IMPACT ✳ SOCIAL365 ✳</textPath></text>
         </svg>
       </figure>
     </PageHero>
 
-    <Marquee>INDEPENDENT BY DESIGN</Marquee>
+    <Marquee>TURNING BRANDS INTO EXPERIENCES</Marquee>
     <WhoWeAre />
     <Expertise />
     <Philosophy />
@@ -36,8 +37,8 @@ export default function About() {
       tone="ink"
       id="process"
       eyebrow="( Our Process )"
-      lines={['Five steps from', <>hello to <em>launch.</em></>]}
-      intro="A clear path with no surprises, and something concrete to review at every stage."
+      lines={['Five steps from', <>hello to <em>growth.</em></>]}
+      intro="A clear path from first conversation to ongoing growth, with something concrete to look at along the way."
       steps={aboutProcess}
     />
 
@@ -47,14 +48,14 @@ export default function About() {
       id="why-us"
       eyebrow="( Why Choose Us )"
       lines={['Partnership,', <>not just <em>projects.</em></>]}
-      intro="Skip the agency overhead. Work with a small team that is tuned for clarity and execution."
+      intro="What working with social365 means for your brand."
       items={whyUs}
     />
 
     <PageCta
       eyebrow="( Next )"
-      lines={["Let's build", <>something <em>good.</em></>]}
-      sub="Big brief, small question, or just a feeling that something could be better. Start the conversation."
+      lines={["Let's build your", <>brand <em>experience.</em></>]}
+      sub="Big brief, small question, or just an idea. Start the conversation."
     />
   </>;
 }

@@ -4,18 +4,18 @@ import { gsap } from '../../animations/gsapConfig.js';
 const perspectives = [
   {
     num: '01',
-    title: 'Distinct over Default',
-    desc: 'The internet is drowning in identical templates and corporate monotony. We build work that stops the scroll through bold point-of-view.',
+    title: 'Strategy first',
+    desc: 'Great content starts with a clear idea of who you are talking to and why. We plan before we create.',
   },
   {
     num: '02',
-    title: 'Code as Craft',
-    desc: 'High design means nothing if the execution lags. We treat frontend engineering, accessibility, and micro-interactions with obsessive care.',
+    title: 'Creativity that connects',
+    desc: 'We tell stories that make people feel something, so your brand becomes an experience, not just another post.',
   },
   {
     num: '03',
-    title: 'Substance over Noise',
-    desc: 'Every element must earn its place. We strip away superficial gimmicks to let clear typography, rhythm, and purpose lead.',
+    title: 'Impact that builds',
+    desc: 'Every post, reel and campaign should move your business forward and strengthen your presence over time.',
   },
 ];
 
@@ -52,16 +52,16 @@ export default function Manifesto() {
   }, []);
 
   return (
-    <section className="manifesto-section" id="manifesto" ref={ref} aria-label="Studio manifesto and core perspectives">
+    <section className="manifesto-section" id="manifesto" ref={ref} aria-label="social365 philosophy">
       <div className="manifesto-top">
-        <span className="eyebrow">( Studio Perspectives )</span>
-        <span>A POINT OF VIEW · 2026</span>
+        <span className="eyebrow">( Our Philosophy )</span>
+        <span>STRATEGY. CREATIVITY. IMPACT.</span>
       </div>
 
       <div className="manifesto-copy">
-        <span className="manifesto-word">LESS</span>
-        <span className="manifesto-word">SAME.</span>
-        <span className="manifesto-word manifesto-outline">MORE <i>SOUL.</i></span>
+        <span className="manifesto-word">THINK.</span>
+        <span className="manifesto-word">CREATE.</span>
+        <span className="manifesto-word manifesto-outline">MAKE <i>IMPACT.</i></span>
       </div>
 
       <div className="manifesto-orb" aria-hidden="true">
@@ -70,8 +70,8 @@ export default function Manifesto() {
       </div>
 
       <p className="manifesto-note">
-        The internet has enough of the expected.<br />
-        We’re here for the work with a genuine point of view.
+        Your audience sees hundreds of brands a day.<br />
+        We help yours turn into an experience they remember.
       </p>
 
       <div className="manifesto-insights-grid">

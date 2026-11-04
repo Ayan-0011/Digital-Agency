@@ -21,7 +21,7 @@ export default function Home() {
       <Hero />
       <CinematicReveal />
 
-      <Marquee>INDEPENDENT BY DESIGN</Marquee>
+      <Marquee>STRATEGY. CREATIVITY. IMPACT.</Marquee>
       <WorkSection compact />
 
       <AchievementsSection />

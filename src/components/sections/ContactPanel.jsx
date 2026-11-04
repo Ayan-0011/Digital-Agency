@@ -34,7 +34,7 @@ export default function ContactPanel() {
       <SectionHead
         eyebrow="( Start A Project )"
         lines={['Tell us what', <>you&rsquo;re <em>thinking.</em></>]}
-        intro="Fill in what you can. Only the essentials are required, and a first conversation doesn't need a perfect brief."
+        intro="Tell us about your brand and what you need. Only the essentials are required, and a first conversation doesn't need a perfect brief."
       />
 
       <div className="ct-layout">
@@ -46,8 +46,8 @@ export default function ContactPanel() {
             <a className="ct-mail" href={`mailto:${brand.email}`}>{brand.email} <ArrowUpRight size={16} /></a>
           </div>
           <div>
-            <span className="eyebrow">Studio</span>
-            <p>{brand.city}, working with teams everywhere.</p>
+            <span className="eyebrow">Agency</span>
+            <p>{brand.name}, {brand.city}. Working with brands everywhere.</p>
           </div>
           <div>
             <span className="eyebrow">Local time</span>

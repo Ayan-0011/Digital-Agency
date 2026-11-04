@@ -14,7 +14,7 @@ export default function Contact() {
       eyebrow="( Let's Start Something )"
       meta={brand.location}
       lines={['Have a', <><em>good one.</em></>]}
-      intro="A first conversation doesn't need a perfect brief. Tell us what you're thinking and we'll take it from there."
+      intro="A first conversation doesn't need a perfect brief. Tell us about your brand and what you have in mind, and we'll take it from there."
     >
       <a className="ct-hero-mail" href={`mailto:${brand.email}`}>
         <span className="eyebrow">Prefer email?</span>
@@ -46,8 +46,8 @@ export default function Contact() {
       eyebrow="( Still Thinking? )"
       side="WRITE TO US ↘"
       lines={['Say hello,', <>we&rsquo;d love <em>to.</em></>]}
-      sub="Prefer to skip the form? Send us a note directly and we'll reply with next steps."
-      primary={{ label: 'EMAIL THE STUDIO', href: `mailto:${brand.email}` }}
+      sub="Prefer to skip the form? Email us or message social365.agency on Instagram and we'll reply with next steps."
+      primary={{ label: 'EMAIL SOCIAL365', href: `mailto:${brand.email}` }}
     />
   </>;
 }

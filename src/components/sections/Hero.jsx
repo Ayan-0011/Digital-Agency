@@ -2,6 +2,7 @@ import { useLayoutEffect, useRef } from 'react';
 import { gsap, ScrollTrigger } from '../../animations/gsapConfig.js';
 import { dockState, fitWord, viewWidth, heroPad } from '../../animations/brandGeometry.js';
 import BrandWord from '../ui/BrandWord.jsx';
+import { brand } from '../../config/brand.js';
 
 // crosshair marks, % of hero
 const PLUS = [[3, 36], [34, 36], [66, 36], [97, 36], [3, 58], [97, 58], [3, 80], [34, 80], [97, 80]];
@@ -108,13 +109,13 @@ export default function Hero() {
       <div className="hx-bg" />
 
       <div className="hx-fade">
-        <h1 className="hx-tagline">Your Groth our Mission</h1>
-        <p className="hx-sub">Brands, digital experiences and technology people want to spend time with</p>
+        <h1 className="hx-tagline">{brand.tagline}</h1>
+        <p className="hx-sub">{brand.philosophy}</p>
         {PLUS.map(([left, top]) => <span key={`${left}-${top}`} className="hx-plus" style={{ left: `${left}%`, top: `${top}%` }} aria-hidden="true" />)}
       </div>
 
       <div className="hx-stage" ref={stage}>
-        <div className="hx-kicker-box"><p className="hx-kicker">Creative Digital Agency</p></div>
+        <div className="hx-kicker-box"><p className="hx-kicker">{brand.positioning}</p></div>
         <div className="hx-wordmark" ref={mark} aria-hidden="true">
           <span ref={word} className="hx-ghost"><BrandWord /></span>
         </div>
