@@ -1,0 +1,161 @@
+/* Cinematic video + overlapping image reveal (sits between Hero and the marquee).
+   The section is tall; the stage inside it is sticky, so the video stays put while the scroll drives the cards.
+   No ScrollTrigger pin is used, so there is no pin-spacer to disturb the triggers further down the page. */
+
+.cine {
+  position: relative;
+  z-index: 1;
+  height: 460vh;
+  height: 460svh;
+  background: var(--ink);/* the breathing space around the video, same paper tone as the rest of the page */
+  color: var(--paper);
+}
+
+.cine-stage {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  height: 100svh;
+  min-height: 520px;
+  padding: var(--cine-gap); /* space on all four sides of the video */
+}
+
+.cine {
+  --cine-gap: clamp(12px, 2.4vw, 34px);
+}
+
+.cine-frame {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden; /* also keeps the cards and parallax inside the frame, so no horizontal overflow */
+  isolation: isolate;
+  border-radius: clamp(16px, 2.2vw, 30px);
+  background: #0b0c0b;
+}
+
+.cine-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  background: #0b0c0b;
+  will-change: transform;
+  transform-origin: 50% 50%;
+}
+
+.cine-shade {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    radial-gradient(120% 90% at 50% 45%, rgba(0, 0, 0, 0.18) 30%, rgba(0, 0, 0, 0.72) 100%),
+    rgba(0, 0, 0, 0.22); /* keeps the white headline readable over the bright face */
+}
+
+.cine-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+}
+
+/* headline: dead centre of the video, above the cards */
+.cine-title {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  padding: 0 4%;
+  text-align: center;
+  color: var(--paper);
+  font-size: clamp(28px, 4.3vw, 76px);
+  font-weight: 700;
+  letter-spacing: -0.045em;
+  line-height: 1.02;
+  text-shadow: 0 2px 40px rgba(0, 0, 0, 0.35);
+  pointer-events: none;
+}
+
+.cine-line {
+  display: block;
+  overflow: hidden;
+  padding: 0.08em 0 0.14em;
+  margin: -0.08em 0 -0.14em; /* mask for the rise-in without changing the line spacing */
+}
+
+.cine-line > span {
+  display: block;
+}
+
+/* outer wrapper: position + scroll parallax (y) */
+.cine-card {
+  position: absolute;
+  left: var(--l);
+  top: var(--t);
+  width: min(calc(var(--w) * 1vw), calc(var(--w) * 1.7vh));
+  width: min(calc(var(--w) * 1vw), calc(var(--w) * 1.7svh));
+  aspect-ratio: 350 / 540;
+  margin: 0;
+  will-change: transform;
+}
+
+/* middle wrapper: clip-path reveal + entrance travel */
+.cine-clip {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 14px;
+  background: #151615;
+  box-shadow: 0 30px 60px -20px rgba(0, 0, 0, 0.55);
+  will-change: clip-path, transform;
+}
+
+/* image: oversized so its own drift never exposes an edge */
+.cine-img {
+  position: absolute;
+  inset: -8% 0;
+  width: 100%;
+  height: 116%;
+  object-fit: cover;
+  user-select: none;
+  will-change: transform;
+}
+
+@media (max-width: 720px) {
+  .cine {
+    height: 400vh;
+    height: 400svh;
+  }
+
+  .cine-card {
+    left: var(--ml);
+    top: var(--mt);
+    width: calc(var(--mw) * 1vw);
+  }
+
+  .cine-clip {
+    border-radius: 10px;
+  }
+
+  .cine-title {
+    font-size: clamp(28px, 9.4vw, 52px);
+  }
+}
+
+/* reduced motion: no scroll-linked effects. One calm screen, video paused on its first frame, every image in place. */
+@media (prefers-reduced-motion: reduce) {
+  .cine {
+    height: auto;
+  }
+
+  .cine-stage {
+    position: relative;
+  }
+}

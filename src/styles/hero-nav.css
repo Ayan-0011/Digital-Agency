@@ -1,0 +1,410 @@
+:root {
+  --hx-accent: #f23a00;
+  --hx-serif: 'Instrument Serif', Georgia, serif;
+  --hx-ease: cubic-bezier(0.76, 0, 0.24, 1);
+  --hx-pad: clamp(16px, 2.6vw, 36px);
+}
+
+/* ---------- NAVBAR ---------- */
+.nv {
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: 100;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: clamp(16px, 2.2vw, 28px) var(--hx-pad);
+  color: var(--hx-accent);
+  pointer-events: none;
+}
+
+.nv>* {
+  pointer-events: auto;
+}
+
+.nv-logo {
+  /* the ONE brand name: Hero.jsx moves/scales it, BrandMark.jsx sets its size and docked position */
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 80; /* under the open menu while it is still travelling through the hero */
+  width: max-content;
+  white-space: nowrap;
+  color: var(--hx-accent);
+  font-weight: 800;
+  line-height: 0.8;
+  transform-origin: 50% 50%;
+}
+
+.nv-logo.is-docked {
+  z-index: 101; /* docked in the navbar: stays above the menu overlay */
+}
+
+.nv-logo:focus-visible {
+  outline: 2px solid var(--hx-accent);
+  outline-offset: 0.08em;
+}
+
+/* reduced motion: the big name stays in the hero, the navbar name appears after it */
+body.hx-reduced:not(.hx-passed) .nv-logo {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.nv-burger {
+  margin: -10px -2px 0 auto; /* 48px touch target, lines stay aligned with the old 44x28 button */
+  position: relative;
+  width: 48px;
+  height: 48px;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+
+.nv-burger span {
+  position: absolute;
+  left: 2px;
+  right: 2px;
+  height: 2px;
+  background: var(--hx-accent);
+  transition: transform 0.5s var(--hx-ease), top 0.5s var(--hx-ease);
+}
+
+.nv-burger span:nth-child(1) {
+  top: 18px;
+}
+
+.nv-burger span:nth-child(2) {
+  top: 28px;
+}
+
+.nv--open .nv-burger span:nth-child(1) {
+  top: 23px;
+  transform: rotate(45deg);
+}
+
+.nv--open .nv-burger span:nth-child(2) {
+  top: 23px;
+  transform: rotate(-45deg);
+}
+
+.nv-burger:focus-visible,
+.nv a:focus-visible {
+  outline: 2px solid var(--hx-accent);
+  outline-offset: 4px;
+}
+
+.nv-menu {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr auto;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: clamp(88px, 11vw, 150px) var(--hx-pad) max(var(--hx-pad), env(safe-area-inset-bottom));
+  background: rgba(3, 10, 12, 0.82);
+  color: #fff;
+  -webkit-backdrop-filter: blur(28px);
+  backdrop-filter: blur(28px);
+  visibility: hidden;
+  clip-path: inset(0 0 100% 0);
+  pointer-events: none;
+}
+
+.nv-menu--open {
+  pointer-events: auto;
+}
+
+.nv-info {
+  grid-row: 1;
+  grid-column: 1;
+  align-self: start;
+}
+
+/* the time sits at the bottom of the menu, level with the bottom of the links */
+.nv-clock {
+  grid-row: 2;
+  grid-column: 1;
+  align-self: end;
+  padding-top: 32px;
+}
+
+.nv-about {
+  max-width: 11em;
+  margin: 0;
+  font-size: clamp(28px, 3.8vw, 60px);
+  font-weight: 600;
+  letter-spacing: -0.035em;
+  line-height: 1.02;
+}
+
+.nv-about em {
+  font-style: normal;
+  color: var(--hx-accent);
+}
+
+.nv-time {
+  margin: 0;
+  font-size: clamp(28px, 3.4vw, 54px);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+}
+
+.nv-tz {
+  margin: 6px 0 0;
+  font-size: 12px;
+  opacity: 0.6;
+}
+
+.nv-list {
+  grid-row: 1 / span 2;
+  grid-column: 2;
+  align-self: end;
+  justify-self: end;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-align: right;
+}
+
+.nv-item {
+  overflow: hidden;
+}
+
+.nv-link {
+  display: block;
+  min-height: 48px; /* comfortable touch target */
+  font-size: clamp(40px, 5.8vw, 96px);
+  font-weight: 500;
+  letter-spacing: -0.045em;
+  line-height: 0.98;
+  transition: color 0.25s;
+}
+
+.nv-link:hover,
+.nv-link.active {
+  color: var(--hx-accent);
+}
+
+.nv-link-inner {
+  display: inline-block;
+}
+
+/* hero page: image screen ke top se start ho (main ki 76px padding hatao) */
+body.has-hero main {
+  padding-top: 0;
+}
+
+/* ---------- HERO ---------- */
+.hx {
+  position: relative;
+  height: 100svh;
+  min-height: 560px;
+  overflow: hidden;
+  isolation: isolate;
+  background: #000;
+  color: #fff;
+}
+
+.hx-bg {
+  position: absolute;
+  inset: -18% 0 0; /* extra height above so the scroll parallax never exposes the black base */
+  z-index: -2;
+  background:
+    url('/images/') center / cover no-repeat,
+    radial-gradient(55% 45% at 72% 28%, rgba(255, 255, 255, 0.55), transparent 62%),
+    radial-gradient(50% 60% at 28% 62%, #66e6ee, transparent 70%),
+    linear-gradient(135deg, #0b9db8, #15c3d6 45%, #0a5f93);
+}
+
+/* baaki text: niche corners */
+.hx-tagline {
+  position: absolute;
+  left: var(--hx-pad);
+  bottom: var(--hx-pad);
+  max-width: 7em;
+  margin: 0;
+  font-size: clamp(28px, 3.6vw, 56px);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  text-align: left;
+}
+
+.hx-sub {
+  position: absolute;
+  right: var(--hx-pad);
+  bottom: var(--hx-pad);
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  max-width: 16em;
+  margin: 0;
+  font-size: clamp(14px, 1.5vw, 22px);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  text-align: left;
+}
+
+.hx-sub::before {
+  content: '';
+  flex: none;
+  width: 0.7em;
+  height: 0.7em;
+  margin-top: 0.1em;
+  border: 0.22em solid var(--hx-accent);
+  border-radius: 50%;
+}
+
+.hx-fade {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.hx-stage {
+  position: absolute;
+  inset: 0;
+  padding: 0 var(--hx-pad);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.hx-kicker {
+  margin: 0 0 clamp(14px, 2.2vw, 36px);
+  text-align: center;
+  font-family: var(--hx-serif);
+  font-size: clamp(35px, 5.4vw, 74px);
+  line-height: 1;
+}
+
+.hx-wordmark {
+  /* layout placeholder: the visible, clickable name is the navbar element (.nv-logo) */
+}
+
+.hx-ghost {
+  display: inline-block;
+}
+
+.hx-word {
+  display: inline-block;
+  color: var(--hx-accent);
+  font-weight: 800;
+  line-height: 0.8;
+  white-space: nowrap;
+}
+
+.hx-char {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: top;
+  padding: 0.12em 0.08em 0.3em;
+  margin: -0.12em -0.12em -0.3em;
+}
+
+.hx-char>span {
+  display: inline-block;
+}
+
+/* crosshair marks */
+.hx-plus {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.hx-plus::before,
+.hx-plus::after {
+  content: '';
+  position: absolute;
+  background: #fff;
+}
+
+.hx-plus::before {
+  left: 6px;
+  top: 0;
+  width: 2px;
+  height: 100%;
+}
+
+.hx-plus::after {
+  top: 6px;
+  left: 0;
+  height: 2px;
+  width: 100%;
+}
+
+/* orange cursor dot (rendered in <body>, follows the mouse on the whole page) */
+.hx-cursor {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 200;
+  width: 18px;
+  height: 18px;
+  margin: -9px 0 0 -9px;
+  border-radius: 50%;
+  background: var(--hx-accent);
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.9);
+  opacity: 0;
+  pointer-events: none;
+  will-change: transform;
+}
+
+@media (hover: none), (pointer: coarse) {
+  .hx-cursor {
+    display: none;
+  }
+}
+
+/* hide the system cursor only while the orange cursor is running (fine pointers) */
+html.has-cursor,
+html.has-cursor * {
+  cursor: none !important;
+}
+
+html.has-cursor input:not([type='checkbox']):not([type='radio']):not([type='submit']),
+html.has-cursor textarea,
+html.has-cursor select {
+  cursor: text !important;
+}
+
+@media (max-width: 720px) {
+  .nv-menu {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr auto;
+  }
+
+  .nv-list {
+    grid-row: 1;
+    grid-column: 1;
+  }
+
+  .nv-info {
+    grid-row: 2;
+    padding-top: 28px;
+  }
+
+  .nv-clock {
+    grid-row: 3;
+  }
+
+  .hx-tagline {
+    bottom: calc(var(--hx-pad) + 76px);
+  }
+
+  .hx-sub {
+    left: var(--hx-pad);
+    right: var(--hx-pad);
+    max-width: none;
+  }
+}
