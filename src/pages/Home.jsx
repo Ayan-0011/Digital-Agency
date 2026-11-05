@@ -27,7 +27,7 @@ export default function Home() {
       <AchievementsSection />
       <WhatWeDo />
 
-      <HorizontalScroll />
+      {/* <HorizontalScroll /> */}
       <ToolsSection />
 
       <EngagementSection />

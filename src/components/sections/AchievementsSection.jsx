@@ -5,35 +5,23 @@ import { gsap } from '../../animations/gsapConfig.js';
 const metrics = [
   {
     value: 7,
-    suffix: '',
-    decimals: 0,
-    pad: true,
     label: 'Core Services',
-    desc: 'Social media, reels, shoots, campaigns, content strategy, websites and influencer campaigns, all under one roof.',
+    desc: 'Social media, content, campaigns, branding and digital experiences under one roof.',
   },
   {
     value: 3,
-    suffix: '',
-    decimals: 0,
-    pad: true,
     label: 'Brand Pillars',
-    desc: 'Strategy. Creativity. Impact. The three ideas behind every project we take on.',
+    desc: 'Strategy, creativity and impact. The foundation behind every project.',
   },
   {
     value: 365,
-    suffix: '',
-    decimals: 0,
-    pad: false,
     label: 'Days Of Presence',
-    desc: 'A brand is not built in one post. We think about consistency across the whole year.',
+    desc: 'Building consistent brand experiences that keep your business moving forward.',
   },
   {
     value: 1,
-    suffix: '',
-    decimals: 0,
-    pad: true,
-    label: 'Story, Told Well',
-    desc: 'Every post, reel, shoot and campaign is made to tell one consistent story for your brand.',
+    label: 'Clear Direction',
+    desc: 'One unified story connecting every interaction with your audience.',
   },
 ];
 
@@ -45,13 +33,12 @@ export default function AchievementsSection() {
 
     mm.add('(prefers-reduced-motion: no-preference)', () => {
       const ctx = gsap.context(() => {
-        const once = trigger => ({
+        const once = (trigger) => ({
           trigger,
           start: 'top 85%',
           once: true,
         });
 
-        // Heading animation
         gsap.from('.achieve-line > span', {
           yPercent: 110,
           duration: 1.1,
@@ -64,50 +51,46 @@ export default function AchievementsSection() {
           autoAlpha: 0,
           y: 24,
           duration: 0.9,
-          stagger: 0.12,
+          stagger: 0.15,
           ease: 'power3.out',
           scrollTrigger: once('.achieve-head'),
         });
 
-        // Cards + count-up animation
+        gsap.from('.achieve-image', {
+          clipPath: 'inset(100% 0 0 0)',
+          scale: 1.08,
+          duration: 1.3,
+          ease: 'power4.out',
+          scrollTrigger: once('.achieve-image'),
+        });
+
         gsap.utils.toArray('.achieve-card').forEach((card, i) => {
           gsap.from(card, {
             autoAlpha: 0,
-            y: 40,
+            y: 35,
             duration: 0.85,
-            delay: (i % 2) * 0.08,
+            delay: i * 0.08,
             ease: 'power3.out',
             scrollTrigger: once(card),
           });
 
           const number = card.querySelector('.achieve-num');
           const target = Number(number.dataset.value);
-          const decimals = Number(number.dataset.decimals);
-          const suffix = number.dataset.suffix;
-          const pad = number.dataset.pad === 'true';
-
           const counter = { value: 0 };
 
           gsap.to(counter, {
             value: target,
             duration: 2,
             ease: 'power2.out',
-            snap: {
-              value: decimals === 1 ? 0.1 : 1,
-            },
+            snap: { value: 1 },
             scrollTrigger: once(card),
             onUpdate: () => {
-              let formatted = counter.value.toFixed(decimals);
-
-              if (pad) {
-                formatted = formatted.padStart(2, '0');
-              }
-
-              number.textContent = formatted + suffix;
+              number.textContent = Math.round(counter.value)
+                .toString()
+                .padStart(target === 365 ? 3 : 2, '0');
             },
           });
         });
-
       }, root);
 
       return () => ctx.revert();
@@ -128,48 +111,51 @@ export default function AchievementsSection() {
           ( What We Stand For )
         </span>
 
-        <h2 className="achieve-title">
-          <span className="achieve-line">
-            <span>Behind every</span>
-          </span>
-          <span className="achieve-line">
-            <span>great brand <em>lives</em></span>
-          </span>
-          <span className="achieve-line">
-            <span>a clear story.</span>
-          </span>
-        </h2>
+        <div className="achieve-heading-wrap">
+          <h2 className="achieve-title">
+            <span className="achieve-line">
+              <span>More than</span>
+            </span>
+            <span className="achieve-line">
+              <span>just <em>creative.</em></span>
+            </span>
+            <span className="achieve-line">
+              <span>We create impact.</span>
+            </span>
+          </h2>
 
-        <p className="achieve-intro">
-          We turn ideas into meaningful connections. Strategy gives the
-          direction, creativity gives the voice, and impact is what
-          your brand builds over time.
-        </p>
+          <p className="achieve-intro">
+            We bring strategy, creativity and consistency together
+            to build brands that people notice, remember and trust.
+          </p>
+        </div>
+
       </div>
 
       <div className="achieve-grid">
         {metrics.map((m, i) => (
-          <article className="achieve-card" key={i}>
+          <article className="achieve-card" key={m.label}>
             <div className="achieve-card-top">
               <span
                 className="achieve-num"
                 data-value={m.value}
-                data-decimals={m.decimals}
-                data-suffix={m.suffix}
-                data-pad={m.pad}
               >
-                0
+                {String(m.value).padStart(m.value === 365 ? 3 : 2, '0')}
               </span>
-
-              <span className="achieve-icon" aria-hidden="true">
-                ✳
-              </span>
+              <span className="achieve-icon">✳</span>
             </div>
 
-            <h3 className="achieve-label">{m.label}</h3>
-            <p className="achieve-desc">{m.desc}</p>
+            <div>
+              <h3 className="achieve-label">{m.label}</h3>
+              <p className="achieve-desc">{m.desc}</p>
+            </div>
           </article>
         ))}
+      </div>
+
+      <div className="achieve-bottom">
+        <span>STRATEGY × CREATIVITY × IMPACT</span>
+        <span>BUILT TO MAKE A DIFFERENCE ↗</span>
       </div>
     </section>
   );

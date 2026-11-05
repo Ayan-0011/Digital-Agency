@@ -108,7 +108,7 @@ body.hx-reduced:not(.hx-passed) .nv-logo {
 .nv-menu {
   position: fixed;
   inset: 0;
-  z-index: 990;
+  z-index: 99;
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr auto;
@@ -220,14 +220,29 @@ body.has-hero main {
   color: #fff;
 }
 
+/* Rule behind this background: the LIGHT area sits behind the dark wordmark,
+   the DARK corners sit behind the white text (tagline bottom-left, badge bottom-right). */
 .hx-bg {
   position: absolute;
   inset: -18% 0 0; /* extra height above so the scroll parallax never exposes the black base */
   z-index: -2;
   background:
-    radial-gradient(55% 45% at 72% 28%, rgba(255, 255, 255, 0.55), transparent 62%),
-    radial-gradient(50% 60% at 28% 62%, #66e6ee, transparent 70%),
-    linear-gradient(135deg, #0b9db8, #15c3d6 45%, #0a5f93);
+    radial-gradient(40% 35% at 82% 10%, rgba(255, 255, 255, 0.32), transparent 65%),   /* softer highlight (was a hard white spotlight behind the kicker) */
+    radial-gradient(50% 55% at 30% 62%, rgba(102, 230, 238, 0.95), transparent 70%),   /* light glow behind "social" */
+    radial-gradient(75% 40% at 0% 100%, rgba(4, 40, 84, 0.8), transparent 70%),        /* dark corner behind the tagline */
+    radial-gradient(60% 40% at 100% 100%, rgba(4, 36, 92, 0.85), transparent 70%),     /* dark corner behind the badge */
+    linear-gradient(135deg, #0aa5c0, #12bfd3 45%, #084f8a);
+}
+
+/* fine film grain: removes the flat "plastic gradient" look */
+.hx-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0.16;
+  mix-blend-mode: overlay;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .6 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
 }
 
 /* baaki text: niche corners */
@@ -235,13 +250,15 @@ body.has-hero main {
   position: absolute;
   left: var(--hx-pad);
   bottom: var(--hx-pad);
-  max-width: 7em;
+  max-width: 9.5em;           /* was 7em, which forced "Into" onto its own line */
   margin: 0;
   font-size: clamp(28px, 3.6vw, 56px);
   font-weight: 700;
   letter-spacing: -0.04em;
   line-height: 1;
   text-align: left;
+  text-wrap: balance;         /* "Turning Brands / Into Experiences." */
+  text-shadow: 0 2px 18px rgba(3, 30, 60, 0.35);
 }
 
 .hx-sub {
@@ -258,6 +275,7 @@ body.has-hero main {
   letter-spacing: -0.02em;
   line-height: 1.15;
   text-align: left;
+  text-shadow: 0 2px 18px rgba(3, 30, 60, 0.3);
 }
 
 .hx-sub::before {
@@ -292,6 +310,7 @@ body.has-hero main {
   font-family: var(--hx-serif);
   font-size: clamp(35px, 5.4vw, 74px);
   line-height: 1;
+  text-shadow: 0 2px 18px rgba(3, 30, 60, 0.3);
 }
 
 .hx-wordmark {
@@ -345,7 +364,7 @@ body.has-hero main {
   background: linear-gradient(135deg, #38476b 0%, #b6192e 55%, #ffc1ac 100%);
 }
 
-/* crosshair marks */
+/* crosshair marks (thinner and softer so they don't compete with the text) */
 .hx-plus {
   position: absolute;
   width: 14px;
@@ -358,20 +377,20 @@ body.has-hero main {
 .hx-plus::after {
   content: '';
   position: absolute;
-  background: #fff;
+  background: rgba(255, 255, 255, 0.6);
 }
 
 .hx-plus::before {
-  left: 6px;
+  left: 6.25px;
   top: 0;
-  width: 2px;
+  width: 1.5px;
   height: 100%;
 }
 
 .hx-plus::after {
-  top: 6px;
+  top: 6.25px;
   left: 0;
-  height: 2px;
+  height: 1.5px;
   width: 100%;
 }
 
