@@ -9,7 +9,7 @@
 .nv {
   position: fixed;
   inset: 0 0 auto 0;
-  z-index: 100;
+  z-index: 1000;
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
@@ -27,7 +27,7 @@
   position: fixed;
   left: 0;
   top: 0;
-  z-index: 80; /* under the open menu while it is still travelling through the hero */
+  z-index: 980; /* under the open menu while it is still travelling through the hero */
   width: max-content;
   white-space: nowrap;
   color: var(--hx-accent);
@@ -37,7 +37,17 @@
 }
 
 .nv-logo.is-docked {
-  z-index: 101; /* docked in the navbar: stays above the menu overlay */
+  z-index: 1001; /* docked in the navbar: stays above the menu overlay */
+}
+
+.nv-logo.is-docked::before {
+  content: '';
+  position: absolute;
+  inset: -0.3em -0.42em;
+  z-index: -1;
+  border-radius: 999px;
+  background: var(--paper);
+  box-shadow: 0 4px 20px rgba(18, 21, 33, 0.12);
 }
 
 .nv-logo:focus-visible {
@@ -98,7 +108,7 @@ body.hx-reduced:not(.hx-passed) .nv-logo {
 .nv-menu {
   position: fixed;
   inset: 0;
-  z-index: 90;
+  z-index: 990;
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr auto;
@@ -214,11 +224,10 @@ body.has-hero main {
   position: absolute;
   inset: -18% 0 0; /* extra height above so the scroll parallax never exposes the black base */
   z-index: -2;
-  /* social365 palette: soft light centre behind the wordmark, peach field, maroon and navy toward the edges */
   background:
-    radial-gradient(48% 34% at 50% 46%, rgba(255, 255, 255, 0.9), transparent 72%),
-    radial-gradient(55% 60% at 12% 92%, #38476b, transparent 70%),
-    linear-gradient(165deg, #ffc1ac 0%, #ffc1ac 38%, #b6192e 100%);
+    radial-gradient(55% 45% at 72% 28%, rgba(255, 255, 255, 0.55), transparent 62%),
+    radial-gradient(50% 60% at 28% 62%, #66e6ee, transparent 70%),
+    linear-gradient(135deg, #0b9db8, #15c3d6 45%, #0a5f93);
 }
 
 /* baaki text: niche corners */
