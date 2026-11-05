@@ -1,13 +1,13 @@
-/* Cinematic video + overlapping image reveal (sits between Hero and the marquee).
-   The section is tall; the stage inside it is sticky, so the video stays put while the scroll drives the cards.
-   No ScrollTrigger pin is used, so there is no pin-spacer to disturb the triggers further down the page. */
 
 .cine {
+  --cine-inset: 13%;            /* resting side inset of the video panel (GSAP animates it) */
+  --wm: 1;                      /* card width multiplier: 1 desktop, bigger on tablet */
   position: relative;
+  padding: 60px 0;
   z-index: 1;
-  height: 460vh;
-  height: 460svh;
-  background: var(--ink);/* the breathing space around the video, same paper tone as the rest of the page */
+  height: 480vh;
+  height: 480svh;
+  background: var(--ink, #000); /* the reference page is pure black around the panel */
   color: var(--paper);
 }
 
@@ -16,21 +16,16 @@
   top: 0;
   height: 100vh;
   height: 100svh;
-  min-height: 520px;
-  padding: var(--cine-gap); /* space on all four sides of the video */
-}
-
-.cine {
-  --cine-gap: clamp(12px, 2.4vw, 34px);
-}
-
-.cine-frame {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  overflow: hidden; /* also keeps the cards and parallax inside the frame, so no horizontal overflow */
+  overflow: hidden;             /* cards enter/exit at the viewport edge and can never cause horizontal scroll */
   isolation: isolate;
-  border-radius: clamp(16px, 2.2vw, 30px);
+}
+
+/* full-height video panel, centred; GSAP narrows it with clip-path */
+.cine-video-wrap {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  clip-path: inset(0% var(--cine-inset) 0% var(--cine-inset) round 6px);
   background: #0b0d16;
 }
 
@@ -41,115 +36,121 @@
   height: 100%;
   object-fit: cover;
   background: #0b0d16;
-  will-change: transform;
-  transform-origin: 50% 50%;
 }
 
+/* very light, even shade: just enough for the white headline over bright frames */
 .cine-shade {
   position: absolute;
   inset: 0;
-  z-index: 1;
   pointer-events: none;
-  background:
-    radial-gradient(120% 90% at 50% 45%, rgba(0, 0, 0, 0.18) 30%, rgba(0, 0, 0, 0.72) 100%),
-    rgba(0, 0, 0, 0.22); /* keeps the white headline readable over the bright face */
+  background: rgba(0, 0, 0, 0.12);
 }
 
-.cine-layer {
-  position: absolute;
-  inset: 0;
-  z-index: 2;
-}
-
-/* headline: dead centre of the video, above the cards */
+/* headline: centred, huge, tight, UNDER the cards */
 .cine-title {
   position: absolute;
   inset: 0;
-  z-index: 3;
+  z-index: 2;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   margin: 0;
-  padding: 0 4%;
+  padding: 0 2%;
   text-align: center;
-  color: var(--paper);
-  font-size: clamp(28px, 4.3vw, 76px);
+  color: #fff;
+  font-size: clamp(28px, 7.8vw, 170px);
+  font-size: clamp(28px, min(7.8vw, 19vh), 170px);   /* never taller than the screen: 4 lines must fit */
+  font-size: clamp(28px, min(7.8vw, 19svh), 170px);
   font-weight: 700;
-  letter-spacing: -0.045em;
-  line-height: 1.02;
-  text-shadow: 0 2px 40px rgba(0, 0, 0, 0.35);
+  letter-spacing: -0.055em;
+  line-height: 0.98;
   pointer-events: none;
 }
 
 .cine-line {
   display: block;
-  overflow: hidden;
-  padding: 0.08em 0 0.14em;
-  margin: -0.08em 0 -0.14em; /* mask for the rise-in without changing the line spacing */
+  white-space: nowrap;
 }
 
-.cine-line > span {
-  display: block;
+/* cards ABOVE the headline, like the reference (they clip the edges of the text) */
+.cine-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
 }
 
-/* outer wrapper: position + scroll parallax (y) */
 .cine-card {
   position: absolute;
   left: var(--l);
-  top: var(--t);
-  width: min(calc(var(--w) * 1vw), calc(var(--w) * 1.7vh));
-  width: min(calc(var(--w) * 1vw), calc(var(--w) * 1.7svh));
-  aspect-ratio: 350 / 540;
+  top: 0;                        /* GSAP moves it with transform only */
+  width: min(calc(var(--w) * var(--wm) * 1vw), calc(var(--w) * var(--wm) * 2vh));
+  width: min(calc(var(--w) * var(--wm) * 1vw), calc(var(--w) * var(--wm) * 2svh));
   margin: 0;
-  will-change: transform;
-}
-
-/* middle wrapper: clip-path reveal + entrance travel */
-.cine-clip {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  border-radius: 14px;
   background: #121521;
-  box-shadow: 0 30px 60px -20px rgba(0, 0, 0, 0.55);
-  will-change: clip-path, transform;
-}
-
-/* image: oversized so its own drift never exposes an edge */
-.cine-img {
-  position: absolute;
-  inset: -8% 0;
-  width: 100%;
-  height: 116%;
-  object-fit: cover;
-  user-select: none;
   will-change: transform;
+  /* reference: square corners, no shadow */
 }
 
+/* right-hand cards hug the right edge, whatever width the card ends up with */
+.cine-card.cine-card--right {
+  left: auto;
+  right: var(--r);
+}
+
+.cine-card img {
+  display: block;
+  width: 100%;
+  height: auto;                  /* natural aspect ratio => no cropping or distortion */
+  user-select: none;
+}
+
+/* tablet: same composition, bigger cards, slightly shorter scroll */
+@media (min-width: 721px) and (max-width: 1024px) {
+  .cine {
+    --cine-inset: 10%;
+    --wm: 1.3;
+    height: 440vh;
+    height: 440svh;
+  }
+
+  .cine-video-wrap { clip-path: inset(0% var(--cine-inset) 0% var(--cine-inset) round 5px); }
+}
+
+/* phones */
 @media (max-width: 720px) {
   .cine {
-    height: 400vh;
-    height: 400svh;
+    --cine-inset: 6%;
+    height: 420vh;
+    height: 420svh;
   }
+
+  .cine-video-wrap { clip-path: inset(0% var(--cine-inset) 0% var(--cine-inset) round 4px); }
 
   .cine-card {
     left: var(--ml);
-    top: var(--mt);
     width: calc(var(--mw) * 1vw);
   }
 
-  .cine-clip {
-    border-radius: 10px;
+  .cine-card.cine-card--right {
+    left: auto;
+    right: var(--mr);
   }
 
   .cine-title {
-    font-size: clamp(28px, 9.4vw, 52px);
+    font-size: clamp(30px, min(11vw, 17vh), 64px);
+    font-size: clamp(30px, min(11vw, 17svh), 64px);
   }
 }
 
-/* reduced motion: no scroll-linked effects. One calm screen, video paused on its first frame, every image in place. */
+/* short landscape screens: cards a touch smaller so they never fill the whole height */
+@media (min-width: 721px) and (max-height: 520px) and (orientation: landscape) {
+  .cine { --wm: 0.8; }
+  .cine-card { width: calc(var(--w) * var(--wm) * 1vw); }
+}
+
+/* reduced motion: no scroll-linked effects. One calm screen, every image resting in place. */
 @media (prefers-reduced-motion: reduce) {
   .cine {
     height: auto;
@@ -157,5 +158,9 @@
 
   .cine-stage {
     position: relative;
+  }
+
+  .cine-card {
+    top: var(--rt);
   }
 }
