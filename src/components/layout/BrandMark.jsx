@@ -12,7 +12,7 @@ import BrandWord from '../ui/BrandWord.jsx';
  * - Every other page: it simply sits docked in the navbar.
  * It is always a link to "/".
  */
-export default function BrandMark() {
+export default function BrandMark({ menuOpen = false }) {
   const ref = useRef(null);
   const { pathname } = useLocation();
   const isHome = pathname === '/';
@@ -44,7 +44,7 @@ export default function BrandMark() {
   };
 
   return (
-    <Link ref={ref} to="/" className="nv-logo" aria-label={`${brand.name} home`} onClick={goHome} data-cursor="link">
+    <Link ref={ref} to="/" className={`nv-logo${menuOpen ? ' nv-logo--menu-open' : ''}`} aria-label={`${brand.name} home`} onClick={goHome} data-cursor="link">
       <BrandWord />
     </Link>
   );

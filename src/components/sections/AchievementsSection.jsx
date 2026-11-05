@@ -1,6 +1,6 @@
 
 import { useLayoutEffect, useRef } from 'react';
-import { gsap } from '../../animations/gsapConfig.js';
+import { gsap, ScrollTrigger } from '../../animations/gsapConfig.js';
 
 const metrics = [
   {
@@ -30,6 +30,21 @@ export default function AchievementsSection() {
 
   useLayoutEffect(() => {
     const mm = gsap.matchMedia();
+    const pinMm = gsap.matchMedia();
+
+    // Keep the pin lifecycle with its React-owned section so it is unpinned
+    // before React removes the section during route navigation.
+    pinMm.add('(min-width: 901px) and (prefers-reduced-motion: no-preference)', () => {
+      ScrollTrigger.create({
+        trigger: root.current,
+        start: 'bottom bottom',
+        end: () => '+=' + window.innerHeight,
+        pin: true,
+        pinSpacing: false,
+        anticipatePin: 1,
+        invalidateOnRefresh: true,
+      });
+    });
 
     mm.add('(prefers-reduced-motion: no-preference)', () => {
       const ctx = gsap.context(() => {
@@ -96,7 +111,10 @@ export default function AchievementsSection() {
       return () => ctx.revert();
     });
 
-    return () => mm.revert();
+    return () => {
+      pinMm.revert();
+      mm.revert();
+    };
   }, []);
 
   return (

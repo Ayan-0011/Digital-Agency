@@ -86,7 +86,7 @@ export default function Navbar() {
 
   return <>
     {/* the single, animated brand name (links to "/") */}
-    <BrandMark />
+    <BrandMark menuOpen={open} />
 
     <header className={`nv ${open ? 'nv--open' : ''}`} onKeyDown={trapTab}>
       <button ref={burgerRef} className="nv-burger" onClick={() => setOpen(value => !value)} aria-expanded={open} aria-controls="site-menu" aria-label={open ? 'Close menu' : 'Open menu'}>

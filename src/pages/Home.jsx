@@ -21,7 +21,7 @@ export default function Home() {
       <Hero />
       <CinematicReveal />
 
-      <Marquee>STRATEGY. CREATIVITY. IMPACT.</Marquee>
+      <Marquee dark>STRATEGY. CREATIVITY. IMPACT.</Marquee>
       <WorkSection compact />
 
       <AchievementsSection />

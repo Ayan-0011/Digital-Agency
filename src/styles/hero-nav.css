@@ -9,7 +9,7 @@
 .nv {
   position: fixed;
   inset: 0 0 auto 0;
-  z-index: 1000;
+  z-index: 100;
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
@@ -27,7 +27,7 @@
   position: fixed;
   left: 0;
   top: 0;
-  z-index: 980; /* under the open menu while it is still travelling through the hero */
+  z-index: 80; /* under the open menu while it is still travelling through the hero */
   width: max-content;
   white-space: nowrap;
   color: var(--hx-accent);
@@ -37,7 +37,7 @@
 }
 
 .nv-logo.is-docked {
-  z-index: 1001; /* docked in the navbar: stays above the menu overlay */
+  z-index: 101; /* docked in the navbar: stays above the menu overlay */
 }
 
 .nv-logo.is-docked::before {
@@ -399,7 +399,7 @@ body.has-hero main {
   position: fixed;
   left: 0;
   top: 0;
-  z-index: 200;
+  z-index: 999;
   width: 18px;
   height: 18px;
   margin: -9px 0 0 -9px;

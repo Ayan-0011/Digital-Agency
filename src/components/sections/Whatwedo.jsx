@@ -2,11 +2,7 @@ import { useLayoutEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowUpRight } from 'lucide-react';
 import { gsap } from '../../animations/gsapConfig.js';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { services } from '../../data/services.js';
-
-// Selector of the Achievements <section>. CHANGE if your root element differs.
-const ACHIEVEMENTS = '#achievements';
 
 export default function WhatWeDo() {
   const root = useRef(null);
@@ -41,25 +37,9 @@ export default function WhatWeDo() {
           return;
         }
 
-        /* ---------- desktop: circular reveal over a pinned Achievements ---------- */
-        const ach = document.querySelector(ACHIEVEMENTS);
+        /* ---------- desktop: circular reveal over the pinned Achievements section ---------- */
         const ease = gsap.parseEase('power2.inOut');
-
-        // 1) Achievements stays put (no spacer) while this section rises over it.
-        if (ach) {
-          // Pure pin: no scale / filter (they expose the page bg at the edges = visible "cut").
-          ScrollTrigger.create({
-            trigger: ach,
-            start: 'bottom bottom',
-            end: () => '+=' + window.innerHeight,
-            pin: true,
-            pinSpacing: false,
-            anticipatePin: 1,
-            invalidateOnRefresh: true,
-          });
-        }
-
-        // 2) Full-screen circle: a fixed paper-coloured curtain grows from the viewport bottom-centre.
+        // Full-screen circle: a fixed paper-coloured curtain grows from the viewport bottom-centre.
         //    The section itself stays unclipped (transparent) until the circle has covered the screen.
         const curtain = el.querySelector('.wwd-curtain');
         const head = el.querySelector('.wwd-head');
