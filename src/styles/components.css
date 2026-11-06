@@ -1908,7 +1908,7 @@ main {
 
 /* ---------- 2. WHAT WE DO ---------- */
 .wwd {
-    padding: clamp(80px, 5vw, 170px) var(--hx-pad) clamp(70px, 9vw, 130px);
+    padding: clamp(80px, 5vw, 170px) var(--hx-pad) clamp(24px, 4vw, 48px);
     background: var(--paper);
     position: relative;
     z-index: 2;

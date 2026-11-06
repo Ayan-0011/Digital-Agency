@@ -112,10 +112,7 @@ export default function WhatWeDo() {
         ))}
       </ul>
 
-      <div className="wwd-foot">
-        <span>{String(services.length).padStart(2, '0')} SERVICES / ONE AGENCY</span>
-        <Link className="text-link" to="/services">ALL SERVICES <ArrowUpRight size={15} /></Link>
-      </div>
+      
     </section>
   );
 }

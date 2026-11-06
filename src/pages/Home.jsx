@@ -2,6 +2,7 @@ import Hero from '../components/sections/Hero.jsx';
 import ShowcaseSection from '../components/sections/ShowcaseSection.jsx';
 import Marquee from '../components/ui/Marquee.jsx';
 import WorkSection from '../components/sections/WorkSection.jsx';
+import CollaborationSection from '../components/sections/CollaborationSection.jsx';
 import AchievementsSection from '../components/sections/AchievementsSection.jsx';
 import WhatWeDo from '../components/sections/Whatwedo.jsx';
 import BenefitsSection from '../components/sections/BenefitsSection.jsx';
@@ -26,6 +27,7 @@ export default function Home() {
 
       <AchievementsSection />
       <WhatWeDo />
+      <CollaborationSection />
 
       {/* <HorizontalScroll /> */}
       <ToolsSection />
@@ -33,7 +35,7 @@ export default function Home() {
       <EngagementSection />
       <FaqSection />
 
-      <ClientStoriesSection />
+      {/* <ClientStoriesSection /> */}
       
       <Manifesto />
       <CtaSection />
