@@ -3,45 +3,62 @@ import { Link } from 'react-router-dom';
 import { ArrowUpRight, Check } from 'lucide-react';
 import { gsap } from '../../animations/gsapConfig.js';
 
+
+
+const toNum = s => Number(String(s).replace(/,/g, ''));
+const savePercent = (orig, now) => Math.round(((toNum(orig) - toNum(now)) / toNum(orig)) * 100);
+
+
 const tiers = [
   {
+    number: '01',
     kicker: 'START SMALL',
-    name: 'Single Project',
-    headline: 'One focused piece of work with a clear outcome.',
+    name: 'Starter Plan',
+    headline: 'The essentials to get your brand showing up consistently.',
     deliverables: [
-      'A set of reels, a product shoot or a campaign creative',
-      'Clear direction from the first conversation',
-      'Content styled around your brand',
-      'A good way to experience how we work',
+      '5 Reels',
+      '5 Social Media Posts',
+      '1 Carousel Post',
+      '1 Story',
+      'Festival Special Post',
     ],
-    cta: 'DISCUSS A PROJECT',
+    price: '12,000',
+    originalPrice: '15,000',
+    cta: 'CHOOSE STARTER',
     featured: false,
   },
   {
-    kicker: 'ALWAYS ON',
-    name: 'Ongoing Content',
-    headline: 'Steady social media management and content for your brand.',
+    number: '02',
+    kicker: 'MOST BALANCED',
+    name: 'Growth Plan',
+    headline: 'More content, more variety and a stronger presence.',
     deliverables: [
-      'Social media management & content',
-      'Content strategy behind every post',
-      'Reels, creatives and shoots as your brand needs them',
-      'A consistent look, voice and posting rhythm',
-      'Open conversation about what to do next',
+      '7 Reels',
+      '7 Social Media Posts',
+      '3 Carousel Posts',
+      '3 Stories',
+      'Festival Special Posts',
     ],
-    cta: 'START WITH CONTENT',
+    price: '16,000',
+    originalPrice: '20,000',
+    cta: 'CHOOSE GROWTH',
     featured: true,
   },
   {
-    kicker: 'FULL PICTURE',
-    name: 'Brand Build',
-    headline: 'Strategy, content, campaigns and web working as one.',
+    number: '03',
+    kicker: 'FULL THROTTLE',
+    name: 'Premium Plan',
+    headline: 'Our fullest content output for brands ready to lead.',
     deliverables: [
-      'Content strategy and brand voice',
-      'Campaign creatives and influencer campaigns',
-      'Website development',
-      'Everything connected into a single story',
+      '10 Reels',
+      '10 Social Media Posts',
+      '5 Carousel Posts',
+      '5 Stories',
+      'Festival Special Posts',
     ],
-    cta: 'BUILD TOGETHER',
+    price: '30,000',
+    originalPrice: '36,000',
+    cta: 'CHOOSE PREMIUM',
     featured: false,
   },
 ];
@@ -89,26 +106,47 @@ export default function EngagementSection() {
   }, []);
 
   return (
-    <section className="engage-sec" id="engagement" ref={root} aria-label="Ways to work with social365">
+    <section className="engage-sec" id="engagement" ref={root} aria-label="Social media creative plans">
       <div className="engage-head">
-        <span className="eyebrow engage-eyebrow">( Ways To Work Together )</span>
+        <span className="eyebrow engage-eyebrow">( Social Media Creative Plans )</span>
         <h2 className="engage-title">
           <span className="engage-line"><span>Start where it</span></span>
           <span className="engage-line"><span>makes <em>sense.</em></span></span>
         </h2>
         <p className="engage-intro">
-          Pick one service or combine several. Every collaboration is shaped around your brand, your audience and your goals.
+          Creative content designed to build your brand’s identity and strengthen its social media presence.
         </p>
       </div>
 
       <div className="engage-grid">
         {tiers.map((t, i) => (
           <article className={`engage-card ${t.featured ? 'engage-featured' : ''}`} key={i}>
-            {t.featured && <span className="engage-badge">MOST POPULAR PATH</span>}
+            {t.featured && <span className="engage-badge">MOST POPULAR</span>}
+
             <div className="engage-card-top">
+              <span className="engage-number">{t.number}</span>
               <span className="engage-kicker">{t.kicker}</span>
               <h3 className="engage-name">{t.name}</h3>
               <p className="engage-headline">{t.headline}</p>
+            </div>
+
+            <div className="engage-divider" />
+
+            <div className="engage-price">
+              <div className="engage-price-top">
+                <span className="engage-price-label">INVESTMENT</span>
+                <span className="engage-save">SAVE {savePercent(t.originalPrice, t.price)}%</span>
+              </div>
+
+              <div className="engage-original">
+                <span className="engage-original-text">₹{t.originalPrice}/-</span>
+              </div>
+
+              <div className="engage-price-row">
+                <span className="engage-currency">₹</span>
+                <span className="engage-amount">{t.price}</span>
+                <span className="engage-suffix">/-</span>
+              </div>
             </div>
 
             <div className="engage-divider" />
@@ -134,7 +172,7 @@ export default function EngagementSection() {
 
       <div className="engage-note">
         <p>
-          Not sure which path fits? Tell us about your brand and we will suggest the right mix.{' '}
+          Need something custom? Tell us about your brand and we will suggest the right mix.{' '}
           <Link to="/contact" className="engage-inline-link">Let’s talk ↘</Link>
         </p>
       </div>

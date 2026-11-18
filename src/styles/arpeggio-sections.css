@@ -645,7 +645,7 @@
 .engage-badge {
   position: absolute;
   top: -12px;
-  left: clamp(24px, 2.8vw, 40px);
+  left: clamp(190px, 3.8vw, 40px);
   background: var(--acid);
   color: var(--ink);
   font: 9px var(--mono);
@@ -777,6 +777,124 @@
 
 .engage-inline-link:hover {
   color: var(--hx-accent);
+}
+
+/* ---------- Price block ---------- */
+.engage-price {
+  position: relative;
+  display: grid;
+  gap: 8px;
+}
+
+.engage-price-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.engage-price-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font: 9px var(--mono);
+  letter-spacing: 0.08em;
+  color: var(--muted);
+}
+
+.engage-price-label::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--hx-accent);
+}
+
+.engage-featured .engage-price-label {
+  color: #aab1c6;
+}
+
+.engage-featured .engage-price-label::before {
+  background: var(--acid);
+}
+
+/* discount chip */
+.engage-save {
+  font: 700 9px var(--mono);
+  letter-spacing: 0.08em;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: var(--hx-accent);
+  color: #fff;
+}
+
+.engage-featured .engage-save {
+  background: var(--acid);
+  color: var(--ink);
+}
+
+/* original (marked) price */
+.engage-original {
+  display: flex;
+  align-items: center;
+}
+
+.engage-original-text {
+  font: 13px var(--mono);
+  letter-spacing: 0.04em;
+  color: var(--muted);
+  text-decoration: line-through;
+  text-decoration-color: var(--hx-accent);
+  text-decoration-thickness: 2px;
+}
+
+.engage-featured .engage-original-text {
+  color: #aab1c6;
+  text-decoration-color: var(--acid);
+}
+
+/* final price */
+.engage-price-row {
+  display: flex;
+  align-items: flex-start;
+  flex-wrap: nowrap;
+  gap: 4px;
+  line-height: 0.9;
+  transform-origin: left center;
+  transition: transform 0.45s var(--hx-ease);
+}
+
+.engage-currency {
+  font-family: var(--hx-serif);
+  font-weight: 400;
+  font-size: clamp(26px, 2.6vw, 38px);
+  color: var(--hx-accent);
+  margin-top: 0.1em;
+}
+
+.engage-amount {
+  font-size: clamp(40px, 2.2vw, 78px);
+  font-weight: 600;
+  letter-spacing: -0.065em;
+  line-height: 0.9;
+  white-space: nowrap;
+}
+
+.engage-suffix {
+  align-self: flex-end;
+  font: 13px var(--mono);
+  letter-spacing: 0.08em;
+  color: var(--muted);
+  padding-bottom: 0.5em;
+  margin-left: 2px;
+}
+
+.engage-featured .engage-currency {
+  color: var(--acid);
+}
+
+.engage-featured .engage-suffix {
+  color: #aab1c6;
 }
 
 /* ---------- 6. FAQ ACCORDION (.faq-sec) ---------- */
