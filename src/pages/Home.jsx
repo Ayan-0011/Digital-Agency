@@ -11,6 +11,7 @@ import ToolsSection from '../components/sections/ToolsSection.jsx';
 import EngagementSection from '../components/sections/EngagementSection.jsx';
 import FaqSection from '../components/sections/FaqSection.jsx';
 import ClientStoriesSection from '../components/sections/ClientStoriesSection.jsx';
+import TestimonialsSection from '../components/sections/TestimonialsSection.jsx';
 import Manifesto from '../components/sections/Manifesto.jsx';
 import CtaSection from '../components/sections/Ctasection.jsx';
 import CinematicReveal from '../components/sections/Cinematicreveal.jsx';
@@ -36,8 +37,10 @@ export default function Home() {
       <FaqSection />
 
       {/* <ClientStoriesSection /> */}
-      
-      <Manifesto />
+
+      <TestimonialsSection />
+
+      {/* <Manifesto /> */}
       <CtaSection />
 
     </>
