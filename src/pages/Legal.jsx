@@ -7,7 +7,7 @@ export default function Legal({ type }) {
   const data = legalContent[type];
   if (!data) return <NotFound />;
 
-  return <>
+  return <div className="legal-page">
     <PageIntro eyebrow="THE IMPORTANT BITS" title={data.title} italic={data.italic} description={data.intro} number="LEGAL / 02" />
     <section className="legal-layout">
       <aside>
@@ -18,6 +18,6 @@ export default function Legal({ type }) {
         {data.sections.map((s, i) => <article id={`legal-${i}`} key={s[0]}><span>0{i + 1} / POLICY</span><h2>{s[0]}</h2><p>{s[1]}</p></article>)}
       </div>
     </section>
-    <ContactSection />
-  </>;
+    {/* <ContactSection /> */}
+  </div>;
 }

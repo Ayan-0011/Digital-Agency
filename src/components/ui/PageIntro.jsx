@@ -7,7 +7,6 @@ export default function PageIntro({ eyebrow, title, italic, description, number 
         <span className="pi-line"><em>{italic}</em></span>
       </h1>
       {description && <p>{description}</p>}
-      <div className="page-intro-glyph"><div className="glyph-ring" /><div className="glyph-core">F<span>/</span>S</div></div>
     </section>
   );
 }
