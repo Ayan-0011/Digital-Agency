@@ -1,10 +1,6 @@
 import { banproData } from './banpro.js';
+import Banpro from '../assets/banpro/products/banpro.jpg';
 
-// Portfolio data. Only BANBPro is a confirmed collaboration so far.
-// The other cards are EDITABLE PLACEHOLDERS (marked `placeholder: true`): replace name, type, line, intro,
-// image, tags and brief with real project details when they are available. No results or client
-// feedback are shown anywhere, so nothing here needs to be removed later.
-// Images use the existing local assets in /public/images; swap them for the real project visuals.
 export const projects = [
   {
     slug: 'banpro',
@@ -18,6 +14,7 @@ export const projects = [
     intro: 'A brand collaboration between social365 and Banpro.',
     brief: 'A showcase of Banpro campaign visuals, product content and video supplied for the social365 collaboration.',
     image: banproData.products[0].image,
+    image: Banpro,
     tags: ['social', 'campaigns', 'reels'],
     services: ['Campaign creatives', 'Product visuals', 'Social content', 'Video content'],
     challenge: 'Project details will be added here.',

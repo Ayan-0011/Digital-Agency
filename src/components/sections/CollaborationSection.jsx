@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { ArrowUpRight } from 'lucide-react';
 import { gsap, ScrollTrigger } from '../../animations/gsapConfig.js';
 import collaborationImage from '../../assets/collab/collabe.jpg';
-import banbproLogo from '../../assets/collab/banpro.jpg';
+import banbproLogo from '../../assets/banpro/products/banpro.jpg';
 import social365Logo from '../../assets/collab/social.jpg';
 
 export default function CollaborationSection() {

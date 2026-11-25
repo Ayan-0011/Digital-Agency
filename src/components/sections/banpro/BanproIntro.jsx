@@ -40,7 +40,7 @@ export default function BanproIntro() {
               src={media.image}
               alt={media.alt}
               width="900"
-              height="1125"
+              height="825"
               loading="lazy"
               decoding="async"
               onLoad={() => ScrollTrigger.refresh()}

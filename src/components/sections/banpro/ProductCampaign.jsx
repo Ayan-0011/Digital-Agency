@@ -7,20 +7,32 @@ export default function ProductCampaign() {
   const root = useRef(null);
 
   useReveal(root, () => {
+    gsap.from('.bp-product .bp-section-head > *', {
+      y: 28,
+      autoAlpha: 0,
+      duration: 0.9,
+      stagger: 0.1,
+      ease: 'power3.out',
+      scrollTrigger: { trigger: '.bp-product .bp-section-head', start: 'top 82%', once: true },
+    });
+
     const cards = gsap.utils.toArray('.bp-product-card');
-    if (!cards.length) return;
-    gsap.set(cards, { y: 38, autoAlpha: 0 });
-    ScrollTrigger.batch(cards, {
-      start: 'top 88%',
-      once: true,
-      onEnter: batch => gsap.to(batch, {
-        y: 0,
-        autoAlpha: 1,
-        duration: 0.9,
-        stagger: 0.1,
-        ease: 'power3.out',
-        overwrite: true,
-      }),
+    cards.forEach((card, index) => {
+      const frame = card.querySelector('.bp-product-frame');
+      const image = card.querySelector('img');
+      gsap.set(card, { y: 32, autoAlpha: 0 });
+      gsap.set(frame, { clipPath: 'inset(0 0 100% 0)' });
+      const tl = gsap.timeline({
+        scrollTrigger: { trigger: card, start: 'top 88%', once: true },
+      });
+      tl.to(card, { y: 0, autoAlpha: 1, duration: 0.65, ease: 'power3.out' })
+        .to(frame, { clipPath: 'inset(0 0 0% 0)', duration: 1.05, ease: 'power4.out' }, 0.08)
+        .from(image || frame, { scale: 1.06, duration: 1.2, ease: 'power3.out' }, 0.08);
+      if (index > 0) tl.duration(tl.duration() * 0.95);
+    });
+
+    return () => ScrollTrigger.getAll().forEach(trigger => {
+      if (trigger.trigger && root.current?.contains(trigger.trigger)) trigger.kill();
     });
   }, []);
 

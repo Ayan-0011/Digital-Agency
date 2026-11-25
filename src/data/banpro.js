@@ -103,7 +103,7 @@ export const banproData = {
     ),
   ],
   gallery: [
-    imageMedia('comb-range-black', 'Metal comb range', 'Product visuals', 'WhatsApp Image 2026-11-05 at 3.44.18 PM (1).jpeg', 'Banbpro metal comb range arranged on a black graphic background.', 'Metal comb range creative.', '4 / 5'),
+   
     imageMedia('tail-comb-detail', 'Tail comb detail', 'Product visuals', 'WhatsApp Image 2026-11-05 at 3.44.18 PM (2).jpeg', 'Banbpro metal tail comb campaign artwork on a dark background.', 'Metal tail comb creative.', '4 / 5'),
     imageMedia('yellow-comb-ad', 'Professional comb', 'Product visuals', 'WhatsApp Image 2026-11-05 at 3.44.18 PM.jpeg', 'Yellow Banbpro professional comb campaign artwork.', 'Professional comb campaign artwork.', '3 / 4'),
     imageMedia('comb-feature-artwork', 'Comb feature artwork', 'Product visuals', 'WhatsApp Image 2026-11-05 at 3.44.19 PM (1).jpeg', 'Banbpro comb advertisement with product details and a black background.', 'Comb product advertisement.', '4 / 5'),

@@ -1,85 +1,65 @@
 import { useEffect, useRef, useState } from 'react';
-import { ArrowUpRight, Play, Volume2, VolumeX, X } from 'lucide-react';
+import { ArrowUpRight, Volume2, VolumeX } from 'lucide-react';
 import { ScrollTrigger, gsap } from '../../../animations/gsapConfig.js';
-import { getLenis } from '../../../animations/smoothScroll.js';
 import { useReveal } from '../../../animations/useReveal.js';
 import { banproData } from '../../../data/banpro.js';
 
 export default function ReelsShowcase() {
   const root = useRef(null);
-  const dialog = useRef(null);
-  const closeButton = useRef(null);
-  const videoRef = useRef(null);
-  const trigger = useRef(null);
-  const [activeId, setActiveId] = useState(null);
-  const [isMuted, setIsMuted] = useState(true);
-  const activeVideo = banproData.videos.find(video => video.id === activeId);
+  const videoRefs = useRef(new Map());
+  const [mutedById, setMutedById] = useState(() => Object.fromEntries(banproData.videos.map(video => [video.id, true])));
 
   useReveal(root, () => {
     const cards = gsap.utils.toArray('.bp-video-card');
     if (!cards.length) return;
     gsap.set(cards, { y: 30, autoAlpha: 0 });
     ScrollTrigger.batch(cards, {
-      start: 'top 88%',
-      once: true,
-      onEnter: batch => gsap.to(batch, {
-        y: 0,
-        autoAlpha: 1,
-        duration: 0.8,
-        stagger: 0.1,
-        ease: 'power3.out',
-        overwrite: true,
-      }),
+      start: 'top 88%', once: true,
+      onEnter: batch => gsap.to(batch, { y: 0, autoAlpha: 1, duration: 0.8, stagger: 0.1, ease: 'power3.out', overwrite: true }),
     });
   }, []);
 
   useEffect(() => {
-    if (!activeVideo) return undefined;
-    const previousOverflow = document.body.style.overflow;
-    const lenis = getLenis();
-    const previouslyFocused = trigger.current;
-    document.body.style.overflow = 'hidden';
-    lenis?.stop();
-    setIsMuted(true);
-    closeButton.current?.focus();
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const saveData = navigator.connection?.saveData;
+    const videos = [...videoRefs.current.values()].filter(Boolean);
 
-    const onKeyDown = event => {
-      if (event.key === 'Escape') {
-        event.preventDefault();
-        setActiveId(null);
-      } else if (event.key === 'Tab') {
-        const focusable = [...(dialog.current?.querySelectorAll('button:not([disabled]), video') ?? [])];
-        if (!focusable.length) return;
-        const first = focusable[0];
-        const last = focusable[focusable.length - 1];
-        if (event.shiftKey && document.activeElement === first) {
-          event.preventDefault();
-          last.focus();
-        } else if (!event.shiftKey && document.activeElement === last) {
-          event.preventDefault();
-          first.focus();
-        }
+    if (reduceMotion || saveData) {
+      videos.forEach(video => video.pause());
+      return undefined;
+    }
+
+    const observer = new IntersectionObserver(entries => {
+      const visible = entries
+        .filter(entry => entry.isIntersecting)
+        .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+      videos.forEach(video => video.pause());
+      if (visible[0]?.target) {
+        visible[0].target.querySelector('video')?.play().catch(() => {});
       }
-    };
-    window.addEventListener('keydown', onKeyDown);
+    }, { threshold: [0.35, 0.65] });
 
-    return () => {
-      window.removeEventListener('keydown', onKeyDown);
-      videoRef.current?.pause();
-      if (videoRef.current) {
-        videoRef.current.removeAttribute('src');
-        videoRef.current.load();
+    videos.forEach(video => {
+      video.muted = true;
+      video.loop = true;
+      video.playsInline = true;
+      observer.observe(video.closest('.bp-video-card'));
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
+  const toggleMute = (event, videoId) => {
+    event.stopPropagation();
+    setMutedById(previous => {
+      const nextMuted = !previous[videoId];
+      const video = videoRefs.current.get(videoId);
+      if (video) {
+        video.muted = nextMuted;
+        if (!nextMuted) video.play().catch(() => {});
       }
-      document.body.style.overflow = previousOverflow;
-      lenis?.start();
-      previouslyFocused?.focus?.();
-    };
-  }, [activeVideo]);
-
-  const toggleMute = () => {
-    const nextMuted = !isMuted;
-    setIsMuted(nextMuted);
-    if (videoRef.current) videoRef.current.muted = nextMuted;
+      return { ...previous, [videoId]: nextMuted };
+    });
   };
 
   return (
@@ -89,78 +69,52 @@ export default function ReelsShowcase() {
           <p className="bp-eyebrow">( Reels & video )</p>
           <h2 className="bp-section-title" id="bp-reels-title">Motion that<br /><em>tells the story.</em></h2>
         </div>
-        <p className="bp-section-note">Supplied Banpro video files are available to play on demand. Playback never starts automatically.</p>
+        <p className="bp-section-note">Muted video previews loop automatically while in view. Use the sound control to unmute.</p>
       </div>
 
       <div className="bp-video-grid bp-wrap">
         {banproData.videos.map((video, index) => {
-          const content = (
-            <>
-              <span className="bp-video-poster" style={{ aspectRatio: video.aspectRatio }}>
-                {video.thumbnail ? (
-                  <img src={video.thumbnail} alt={video.alt} loading="lazy" decoding="async" onLoad={() => ScrollTrigger.refresh()} />
-                ) : (
-                  <span className="bp-video-poster-fallback" aria-hidden="true"><span>BANPRO <i>×</i> SOCIAL365</span><small>VIDEO / 0{index + 1}</small></span>
-                )}
-                <span className="bp-video-play" aria-hidden="true"><Play fill="currentColor" size={17} /></span>
-              </span>
-              <span className="bp-video-card-caption"><span>{video.title}</span><small>{video.instagramUrl ? 'Instagram reel' : 'Video feature'}</small></span>
-            </>
-          );
-
+          const isMuted = mutedById[video.id];
           return (
             <article className="bp-video-card" key={video.id}>
               {video.videoUrl ? (
-                <button
-                  className="bp-video-open"
-                  type="button"
-                  aria-label={`Play ${video.title}`}
-                  onClick={event => {
-                    trigger.current = event.currentTarget;
-                    setActiveId(video.id);
-                  }}
-                >{content}</button>
+                <div className="bp-video-open">
+                  <span className="bp-video-poster" style={{ aspectRatio: video.aspectRatio }}>
+                    <video
+                      ref={element => element ? videoRefs.current.set(video.id, element) : videoRefs.current.delete(video.id)}
+                      src={video.videoUrl}
+                      poster={video.thumbnail || undefined}
+                      muted={isMuted}
+                      loop
+                      autoPlay
+                      playsInline
+                      preload="metadata"
+                      aria-label={video.alt}
+                      onLoadedMetadata={() => ScrollTrigger.refresh()}
+                    />
+                    <button className="bp-video-mute" type="button" onClick={event => toggleMute(event, video.id)} aria-label={isMuted ? `Unmute ${video.title}` : `Mute ${video.title}`}>
+                      {isMuted ? <VolumeX size={15} /> : <Volume2 size={15} />}
+                    </button>
+                  </span>
+                  <span className="bp-video-card-caption"><span>{video.title}</span><small>Video feature</small></span>
+                </div>
               ) : video.instagramUrl ? (
                 <a className="bp-video-open" href={video.instagramUrl} target="_blank" rel="noreferrer" aria-label={`Watch ${video.title} on Instagram`}>
-                  {content}<span className="bp-instagram-link">Watch on Instagram <ArrowUpRight size={14} /></span>
+                  <span className="bp-video-poster bp-video-poster-fallback" style={{ aspectRatio: video.aspectRatio }}>
+                    <span>BANPRO <i>×</i> SOCIAL365</span><small>INSTAGRAM / 0{index + 1}</small>
+                  </span>
+                  <span className="bp-instagram-link">Watch on Instagram <ArrowUpRight size={14} /></span>
                 </a>
               ) : (
-                <div className="bp-video-open bp-video-pending" aria-label={`${video.title} pending`}>{content}<span className="bp-instagram-link">Video pending</span></div>
+                <div className="bp-video-open bp-video-pending">
+                  <span className="bp-video-poster-fallback" style={{ aspectRatio: video.aspectRatio }}><span>BANPRO <i>×</i> SOCIAL365</span><small>VIDEO / 0{index + 1}</small></span>
+                  <span className="bp-instagram-link">Video pending</span>
+                </div>
               )}
             </article>
           );
         })}
       </div>
-
-      {activeVideo && (
-        <div className="bp-video-modal" onMouseDown={event => event.target === event.currentTarget && setActiveId(null)}>
-          <div className="bp-video-dialog" ref={dialog} role="dialog" aria-modal="true" aria-label={`${activeVideo.title} video player`}>
-            <div className="bp-video-modal-head">
-              <span>{activeVideo.title} <small>— BANPRO × SOCIAL365</small></span>
-              <button className="bp-modal-close" ref={closeButton} type="button" onClick={() => setActiveId(null)} aria-label="Close video"><X /></button>
-            </div>
-            <div className="bp-video-player-wrap" style={{ aspectRatio: activeVideo.aspectRatio }}>
-              <video
-                ref={videoRef}
-                src={activeVideo.videoUrl}
-                poster={activeVideo.thumbnail || undefined}
-                controls
-                playsInline
-                preload="metadata"
-                muted={isMuted}
-                aria-label={activeVideo.alt}
-                onLoadedMetadata={() => ScrollTrigger.refresh()}
-              />
-            </div>
-            <div className="bp-video-modal-foot">
-              <p>{activeVideo.caption}</p>
-              <button className="bp-mute-button" type="button" onClick={toggleMute} aria-label={isMuted ? 'Unmute video' : 'Mute video'}>
-                {isMuted ? <VolumeX size={17} /> : <Volume2 size={17} />}{isMuted ? 'Unmute' : 'Mute'}
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
     </section>
   );
 }
