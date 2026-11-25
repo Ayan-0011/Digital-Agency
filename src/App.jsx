@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import Navbar from './components/layout/Navbar.jsx';
 import Footer from './components/layout/Footer.jsx';
 import PageTransition from './components/layout/PageTransition.jsx';
@@ -7,6 +7,7 @@ import { startSmoothScroll } from './animations/smoothScroll.js';
 import Home from './pages/Home.jsx';
 import Work from './pages/Work.jsx';
 import CaseStudy from './pages/CaseStudy.jsx';
+import Banpro from './pages/Banpro.jsx';
 import Services from './pages/Services.jsx';
 import About from './pages/About.jsx';
 import Contact from './pages/Contact.jsx';
@@ -28,6 +29,8 @@ function AppRoutes() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/work" element={<Work />} />
+        <Route path="/work/banpro" element={<Banpro />} />
+        <Route path="/work/banbpro" element={<Navigate to="/work/banpro" replace />} />
         <Route path="/work/:slug" element={<CaseStudy />} />
         <Route path="/services" element={<Services />} />
         <Route path="/about" element={<About />} />

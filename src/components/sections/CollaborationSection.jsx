@@ -1,4 +1,6 @@
 import { useLayoutEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
+import { ArrowUpRight } from 'lucide-react';
 import { gsap, ScrollTrigger } from '../../animations/gsapConfig.js';
 import collaborationImage from '../../assets/collab/collabe.jpg';
 import banbproLogo from '../../assets/collab/banpro.jpg';
@@ -9,6 +11,7 @@ export default function CollaborationSection() {
     const description = useRef(null);
     const note = useRef(null);
     const partners = useRef(null);
+    const cta = useRef(null);
     const image = useRef(null);
 
     useLayoutEffect(() => {
@@ -19,7 +22,7 @@ export default function CollaborationSection() {
             mobile: '(max-width: 768px) and (prefers-reduced-motion: no-preference)',
         }, ({ conditions }) => {
             const { desktop } = conditions;
-            const text = [description.current, note.current, partners.current];
+            const text = [description.current, note.current, partners.current, cta.current];
             const textOffset = desktop ? 60 : 38;
             const once = trigger => ({ trigger, start: 'top 85%', once: true });
 
@@ -90,17 +93,20 @@ export default function CollaborationSection() {
             </div>
 
             <div className="collab-content">
-                <div className="collab-image-frame">
-                    <img
-                        ref={image}
-                        className="collab-image"
-                        src={collaborationImage}
-                        alt="BANBPro x social365 welcome on board partnership"
-                        loading="lazy"
-                        decoding="async"
-                        onLoad={() => ScrollTrigger.refresh()}
-                    />
-                </div>
+                <Link className="collab-media-link" to="/work/banpro" aria-label="Explore the BANBPro and social365 collaboration">
+                    <div className="collab-image-frame">
+                        <img
+                            ref={image}
+                            className="collab-image"
+                            src={collaborationImage}
+                            alt="BANBPro x social365 welcome on board partnership"
+                            loading="lazy"
+                            decoding="async"
+                            onLoad={() => ScrollTrigger.refresh()}
+                        />
+                        <span className="collab-image-cta" aria-hidden="true">Explore collaboration <ArrowUpRight size={17} /></span>
+                    </div>
+                </Link>
 
                 <div className="collab-copy">
                     <p className="collab-description" ref={description}>Proud to partner with BANBPro.</p>
@@ -112,6 +118,9 @@ export default function CollaborationSection() {
                         <span className="collab-partners-x" aria-hidden="true">×</span>
                         <img className="collab-logo collab-logo-social" src={social365Logo} alt="social365" />
                     </div>
+                    <Link className="collab-explore-link" ref={cta} to="/work/banpro">
+                        <span>Explore collaboration</span><ArrowUpRight size={17} aria-hidden="true" />
+                    </Link>
                 </div>
             </div>
         </section>

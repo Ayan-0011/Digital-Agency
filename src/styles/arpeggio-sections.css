@@ -282,6 +282,59 @@
   will-change: transform;
 }
 
+.collab-media-link {
+  display: block;
+  width: min(100%, 65.8vh, 576px);
+  justify-self: center;
+  border-radius: 12px;
+  color: inherit;
+}
+
+.collab-image-cta {
+  position: absolute;
+  right: 14px;
+  bottom: 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 11px 14px;
+  border-radius: 999px;
+  background: rgba(18, 21, 33, 0.84);
+  color: var(--paper);
+  font: 10px var(--mono);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  transition: background 0.3s, color 0.3s;
+}
+
+.collab-image-cta svg,
+.collab-explore-link svg { transition: transform 0.35s var(--hx-ease); }
+
+.collab-explore-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 48px;
+  margin-top: 24px;
+  color: var(--orange);
+  font: 10px var(--mono);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.collab-media-link:focus-visible,
+.collab-explore-link:focus-visible {
+  outline: 2px solid var(--orange);
+  outline-offset: 5px;
+}
+
+@media (hover: hover) {
+  .collab-media-link:hover .collab-image-cta { background: var(--acid); color: var(--ink); }
+  .collab-media-link:hover .collab-image-cta svg,
+  .collab-explore-link:hover svg { transform: translate(3px, -3px); }
+  .collab-explore-link:hover { color: var(--ink); }
+}
+
 @media (max-width: 768px) {
   .collab-content {
     grid-template-columns: minmax(0, 1fr);
@@ -294,6 +347,10 @@
 
   .collab-copy {
     text-align: center;
+  }
+
+  .collab-media-link {
+    width: min(100%, 65.8vh, 576px);
   }
 
   .collab-partners {
